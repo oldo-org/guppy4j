@@ -1,6 +1,6 @@
 = The guppy4j libraries
 
-[quote, Wikipedia, Oct 2014]
+[quote, Oct 2014, Wikipedia]
 ____
 Guppies, whose natural range is in northeast South America, were 
 introduced to many habitats and are now found all over the world. 
