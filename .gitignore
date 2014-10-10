@@ -1,0 +1,13 @@
+# java
+*.class
+*.jar
+
+# maven
+target
+
+# intellij
+.idea
+*.iml
+
+# eclipse
+.project
