@@ -8,3 +8,8 @@ introduced to many habitats and are now found all over the world.
 They are highly adaptable and thrive in many different 
 environmental and ecological conditions.
 ____
+
+== Build status
+
+image:https://buildhive.cloudbees.com/job/guppy4j/job/libraries/badge/icon[
+link="https://buildhive.cloudbees.com/job/guppy4j/job/libraries/"]
