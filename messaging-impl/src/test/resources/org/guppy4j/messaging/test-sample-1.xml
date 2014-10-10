@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+    <nodes>
+        <node>1</node>
+        <node>2</node>
+        <node>3</node>
+        <node>4</node>
+    </nodes>
+</test>

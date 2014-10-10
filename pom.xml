@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>libraries</artifactId>
+    <groupId>org.guppy4j</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>The guppy4j libraries</name>
+    <description>
+        A set of lightweight versatile Java libraries
+    </description>
+
+    <scm>
+        <connection>
+            scm:git:https://github.com/guppy4j/libraries
+        </connection>
+    </scm>
+
+
+    <modules>
+        <module>static</module>
+        <module>core</module>
+        <module>core-impl</module>
+        <module>jdbc</module>
+        <module>jdbc-impl</module>
+        <module>messaging</module>
+        <module>messaging-impl</module>
+        <module>camel</module>
+        <module>camel-impl</module>
+    </modules>
+
+    <properties>
+        <required.java.version>1.7</required.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- 3rd party library versions -->
+        <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.1.2</logback.version>
+        <junit.version>4.11</junit.version>
+        <xmlunit.version>1.5</xmlunit.version>
+        <camel.version>2.12.1</camel.version>
+
+        <!-- maven plugin versions -->
+        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+        <maven-release-plugin.version>2.5</maven-release-plugin.version>
+        <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+        <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <maven-scm-provider-jgit.version>1.9.2</maven-scm-provider-jgit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- core compile-time dependencies -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- other compile-time dependencies -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <!-- test dependencies-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>xmlunit</groupId>
+                <artifactId>xmlunit</artifactId>
+                <version>${xmlunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- runtime dependencies-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-quartz2</artifactId>
+                <version>${camel.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jms</artifactId>
+                <version>${camel.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${required.java.version}</source>
+                    <target>${required.java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <providerImplementations>
+                        <git>jgit</git>
+                    </providerImplementations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-jgit</artifactId>
+                        <version>${maven-scm-provider-jgit.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--
+    <distributionManagement>
+        <repository>
+            <id>maven-central</id>
+            <url></url>
+        </repository>
+    </distributionManagement>
+    -->
+
+</project>
