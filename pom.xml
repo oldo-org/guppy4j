@@ -9,14 +9,14 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>The guppy4j libraries</name>
+    <name>guppy4j-libraries</name>
     <description>
         A set of lightweight versatile Java libraries
     </description>
 
     <scm>
         <connection>
-            scm:git:https://github.com/guppy4j/libraries
+            scm:git:https://github.com/guppy4j/libraries.git
         </connection>
     </scm>
 
