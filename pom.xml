@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>libraries</artifactId>
     <groupId>org.guppy4j</groupId>
+    <artifactId>libraries</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -41,7 +41,7 @@
         <logback.version>1.1.2</logback.version>
         <junit.version>4.11</junit.version>
         <xmlunit.version>1.5</xmlunit.version>
-        <camel.version>2.12.1</camel.version>
+        <camel.version>2.14.0</camel.version>
 
         <!-- maven plugin versions -->
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
