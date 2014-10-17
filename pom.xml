@@ -9,10 +9,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>guppy4j-libraries</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>
         Some lightweight Java libraries
     </description>
+    <url>https://github.com/guppy4j/libraries</url>
 
     <scm>
         <connection>
@@ -31,6 +32,13 @@
         <module>camel</module>
         <module>camel-impl</module>
     </modules>
+    
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
     <properties>
         <required.java.version>1.7</required.java.version>
