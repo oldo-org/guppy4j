@@ -32,7 +32,7 @@
         <module>camel</module>
         <module>camel-impl</module>
     </modules>
-    
+
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
@@ -53,12 +53,15 @@
 
         <!-- maven plugin versions -->
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
-        <maven-release-plugin.version>2.5</maven-release-plugin.version>
         <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
         <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
-        <maven-scm-provider-jgit.version>1.9.2</maven-scm-provider-jgit.version>
+
+        <nexus-staging-maven-plugin.version>1.6.3</nexus-staging-maven-plugin.version>
+        <maven-release-plugin.version>2.5</maven-release-plugin.version>
+        <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+
     </properties>
 
     <dependencyManagement>
@@ -136,33 +139,52 @@
                 <version>${maven-source-plugin.version}</version>
             </plugin>
 
+            <!-- Release builds-->
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>${maven-release-plugin.version}</version>
                 <configuration>
-                    <providerImplementations>
-                        <git>jgit</git>
-                    </providerImplementations>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-jgit</artifactId>
-                        <version>${maven-scm-provider-jgit.version}</version>
-                    </dependency>
-                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
 
-    <!--
     <distributionManagement>
-        <repository>
-            <id>maven-central</id>
-            <url></url>
-        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
-    -->
 
 </project>
