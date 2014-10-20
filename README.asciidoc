@@ -1,9 +1,9 @@
-= The guppy4j libraries
+= guppy4j / libraries
 
 [quote, Oct 2014, Wikipedia]
 ____
-Guppies, whose natural range is in northeast South America, were 
-introduced to many habitats and are now found all over the world. 
+Guppies, also known as "Millions fish", wereintroduced 
+to many habitats and are now found all over the world. 
 
 They are highly adaptable and thrive in many different 
 environmental and ecological conditions.
