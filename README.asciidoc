@@ -1,8 +1,8 @@
 = guppy4j / libraries
 
-[quote, Oct 2014, Wikipedia]
+[quote, Oct 2014, paraphrasing Wikipedia]
 ____
-Guppies, also known as "Millions fish", wereintroduced 
+Guppies, also known as "Millions fish", were introduced 
 to many habitats and are now found all over the world. 
 
 They are highly adaptable and thrive in many different 
