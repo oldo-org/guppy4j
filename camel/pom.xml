@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.guppy4j</groupId>
         <artifactId>libraries</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel</artifactId>
