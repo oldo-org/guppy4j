@@ -13,7 +13,7 @@ public interface SystemInfo {
 
     /**
      * @return File path component separator, e.g. \ on Windows, / on Unix
-     * @see "The file.separator system property""
+     * @see "The file.separator system property"
      */
     char fileSeparator();
 
@@ -52,7 +52,7 @@ public interface SystemInfo {
 
     /**
      * @return User home directory
-     * @see "The user.home system property""
+     * @see "The user.home system property"
      * @see "http://bugs.java.com/view_bug.do?bug_id=4787931"
      */
     Path userHome();
