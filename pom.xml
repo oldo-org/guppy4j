@@ -4,7 +4,7 @@
 
     <groupId>org.guppy4j</groupId>
     <artifactId>libraries</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -13,10 +13,19 @@
     </description>
     <url>https://github.com/guppy4j/libraries</url>
 
+    <developers>
+        <developer>
+            <name>Oliver Doepner</name>
+            <email>oliver@doepner.net</email>
+            <organization>guppy4j.org</organization>
+            <organizationUrl>http://guppy4j.org/</organizationUrl>
+        </developer>
+    </developers>
+
     <scm>
-        <connection>
-            scm:git:https://github.com/guppy4j/libraries.git
-        </connection>
+        <connection>scm:git:https://github.com/guppy4j/libraries.git</connection>
+        <developerConnection>scm:git:https://github.com/guppy4j/libraries.git</developerConnection>
+        <url>https://github.com/guppy4j/libraries.git</url>
         <tag>HEAD</tag>
     </scm>
 
