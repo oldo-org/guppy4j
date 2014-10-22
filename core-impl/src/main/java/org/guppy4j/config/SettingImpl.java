@@ -31,7 +31,7 @@ public class SettingImpl implements Setting {
     }
 
     @Override
-    public String notNullValue() {
+    public String valueNotNull() {
         if (value != null) {
             return value;
         } else {
@@ -55,7 +55,7 @@ public class SettingImpl implements Setting {
     }
 
     @Override
-    public String[] splitBy(char separator) {
-        return stringSplitter.split(notNullValue(), separator);
+    public String[] valueSplitBy(char separator) {
+        return value == null ? null : stringSplitter.split(value, separator);
     }
 }

@@ -9,7 +9,7 @@ import static java.util.regex.Pattern.LITERAL;
 import static java.util.regex.Pattern.compile;
 
 /**
- * Splits String values using String#split and a cached
+ * Splits String values using Pattern#split and a cached
  * regular expression Pattern object for each separator
  * character
  */

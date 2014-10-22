@@ -19,7 +19,7 @@ public interface Setting {
      * @return The value of the setting, if not null
      * @throws IllegalStateException if setting is null
      */
-    String notNullValue();
+    String valueNotNull();
 
     /**
      * @return The value of the setting as a character
@@ -33,6 +33,6 @@ public interface Setting {
     int asInt();
 
 
-    String[] splitBy(char separator);
+    String[] valueSplitBy(char separator);
 
 }

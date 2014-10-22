@@ -38,7 +38,7 @@ public class SystemInfoImpl implements SystemInfo {
 
     @Override
     public Iterable<Path> javaClassPath() {
-        return splitPaths("java.class.path");
+        return splitPaths(get("java.class.path"), pathSeparator());
     }
 
     @Override
@@ -95,8 +95,8 @@ public class SystemInfoImpl implements SystemInfo {
         return notNullValue("user.name");
     }
 
-    private Iterable<Path> splitPaths(String name) {
-        final String[] pathItems = settings.get(name).splitBy(pathSeparator());
+    private static Iterable<Path> splitPaths(Setting setting, char separator) {
+        final String[] pathItems = setting.valueSplitBy(separator);
         final Collection<Path> paths = new ArrayList<>(pathItems.length);
         for (String pathItem : pathItems) {
             paths.add(Paths.get(pathItem));
@@ -109,10 +109,14 @@ public class SystemInfoImpl implements SystemInfo {
     }
 
     private char character(String name) {
-        return settings.get(name).asChar();
+        return get(name).asChar();
     }
 
     private String notNullValue(String name) {
-        return settings.get(name).value();
+        return get(name).valueNotNull();
+    }
+
+    private Setting get(String name) {
+        return settings.get(name);
     }
 }

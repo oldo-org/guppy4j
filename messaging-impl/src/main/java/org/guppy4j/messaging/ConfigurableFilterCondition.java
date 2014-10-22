@@ -26,15 +26,14 @@ public class ConfigurableFilterCondition implements Predicate<ReadableTree> {
         for (Setting setting : filterSettings.all()) {
 
             final String filterExpression = setting.name();
-            final String filterValues = setting.value();
 
             final String value = message.get(filterExpression);
 
-            final boolean contained = contains(filterValues.split(","), value);
+            final boolean contained = contains(setting.valueSplitBy(','), value);
 
             log.as(debug, "Value {} is {} in filter values [{}] (expr={})",
                     value, contained ? "contained" : "NOT",
-                    filterValues, filterExpression);
+                    setting.value(), filterExpression);
 
             if (not(contained)) {
                 return false;
