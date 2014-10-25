@@ -1,6 +1,6 @@
 = guppy4j / libraries
 
-== Release status
+== Releases
 
 Incompatible changes may occur in all 0.x.y releases.
 If you need more stability, wait for the 1.0.0 release.
