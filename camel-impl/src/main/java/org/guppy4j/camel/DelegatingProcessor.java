@@ -19,4 +19,9 @@ public class DelegatingProcessor implements Processor {
     public final void process(Exchange exchange) throws Exception {
         handler.handle(new ExchangeWrapper(exchange));
     }
+
+    @Override
+    public String toString() {
+        return handler.toString();
+    }
 }

@@ -5,8 +5,10 @@ import java.nio.file.Path;
 
 /**
  * Type-safe access to standard
- * <a href=http://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html>
+ * <a href="http://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">
  * System properties</a>
+ *
+ * @see System#getProperties()
  */
 @SuppressWarnings("UnusedDeclaration")
 public interface SystemInfo {
@@ -32,17 +34,31 @@ public interface SystemInfo {
 
     /**
      * @return Ordered list of directories and JAR files, see
-     * <a href=http://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html>
+     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html">
      * Classpath documentation</a> for details
      * @see "The java.class.path system property"
      */
     Iterable<Path> javaClassPath();
 
     /**
+     * @return Paths of extension directory or directories, see the
+     * <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/extensions/spec.html">
+     * Extension mechanism</a> spec for details
+     * @see "The java.ext.dirs system property"
+     */
+    Iterable<Path> javaExtDirs();
+
+    /**
      * @return Installation directory for Java Runtime Environment (JRE),
      * @see "The java.home system property"
      */
     Path javaHome();
+
+    /**
+     * @return Default system directory for temporary files
+     * @see "The java.io.tmpdir system property"
+     */
+    Path javaIoTmpDir();
 
     /**
      * @return Current working directory of this Java process
@@ -56,6 +72,13 @@ public interface SystemInfo {
      * @see "http://bugs.java.com/view_bug.do?bug_id=4787931"
      */
     Path userHome();
+
+    /**
+     * @return Name of JIT compiler to use
+     * @see Compiler
+     * @see "The java.compiler system property"
+     */
+    String javaCompiler();
 
     /**
      * @return JRE vendor name

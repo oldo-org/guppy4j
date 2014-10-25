@@ -42,8 +42,18 @@ public class SystemInfoImpl implements SystemInfo {
     }
 
     @Override
+    public Iterable<Path> javaExtDirs() {
+        return splitPaths(get("java.ext.dirs"), pathSeparator());
+    }
+
+    @Override
     public Path javaHome() {
         return getPath("java.home");
+    }
+
+    @Override
+    public Path javaIoTmpDir() {
+        return getPath("java.io.tmpdir");
     }
 
     @Override
@@ -54,6 +64,11 @@ public class SystemInfoImpl implements SystemInfo {
     @Override
     public Path userHome() {
         return getPath("user.home");
+    }
+
+    @Override
+    public String javaCompiler() {
+        return notNullValue("java.compiler");
     }
 
     @Override

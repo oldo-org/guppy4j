@@ -15,4 +15,6 @@ public interface Log {
 
     void as(Level level, String message, Object... parameters);
 
+    boolean isEnabled(Level level);
+
 }

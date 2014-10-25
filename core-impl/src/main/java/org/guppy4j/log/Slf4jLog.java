@@ -65,7 +65,8 @@ public class Slf4jLog implements Log {
         }
     }
 
-    private boolean isEnabled(Level level) {
+    @Override
+    public boolean isEnabled(Level level) {
         switch (level) {
             case error:
                 return logger.isErrorEnabled();
