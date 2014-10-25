@@ -2,6 +2,8 @@
 
 == Releases
 
+https://github.com/guppy4j/libraries/releases
+
 Incompatible changes may occur in all 0.x.y releases.
 If you need more stability, wait for the 1.0.0 release.
 
