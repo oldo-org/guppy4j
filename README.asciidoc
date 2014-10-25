@@ -1,13 +1,20 @@
 = guppy4j / libraries
 
+== Release status
+
+Incompatible changes may occur in all 0.x.y releases.
+If you need more stability, wait for the 1.0.0 release.
+
+== Build status
+
+image:https://buildhive.cloudbees.com/job/guppy4j/job/libraries/badge/icon[
+link="https://buildhive.cloudbees.com/job/guppy4j/job/libraries/"]
+
+== About the name
+
 [quote, Oct 2014, paraphrasing Wikipedia]
 ____
 Guppies, also known as "Millions fish", were introduced to many habitats and are now found all over the world. 
 They are highly adaptable and thrive in many different environmental and ecological conditions. 
 Their natural habitat range is in northeast South America.
 ____
-
-== Build status
-
-image:https://buildhive.cloudbees.com/job/guppy4j/job/libraries/badge/icon[
-link="https://buildhive.cloudbees.com/job/guppy4j/job/libraries/"]
