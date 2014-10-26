@@ -11,3 +11,6 @@ target
 
 # eclipse
 .project
+
+# generated files
+*.plantuml
