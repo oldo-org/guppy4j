@@ -38,8 +38,6 @@
         <module>jdbc-impl</module>
         <module>messaging</module>
         <module>messaging-impl</module>
-        <module>camel</module>
-        <module>camel-impl</module>
         <module>event</module>
         <module>event-impl</module>
         <module>sound</module>
