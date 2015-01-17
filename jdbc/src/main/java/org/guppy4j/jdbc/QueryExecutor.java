@@ -10,29 +10,29 @@ public interface QueryExecutor {
     /**
      * Calls a stored procedure
      *
-     * @param query The query to executeUpdate (must be a callable statement)
+     * @param query The query to execute (must be a callable statement)
      * @throws JdbcException From all underlying JDBC calls
      */
-    void callProc(Query query);
+    void call(Query query);
 
     /**
      * Executes DML (Data Manipulation Language) queries
      * (i.e. typically INSERT, UPDATE, DELETE statements) or
-     * SQL queries that have no result
+     * other SQL queries (e.g. DDL) that have no result
      *
-     * @param query The query to executeUpdate
+     * @param query The query to execute
      * @return Either the row count for SQL Data Manipulation Language (DML) statements
      * or 0 for SQL statements that return nothing
      * @throws JdbcException From all underlying JDBC calls
      */
-    int executeUpdate(Query query);
+    int execute(Query query);
 
     /**
      * Executes DML (Data Manipulation Language) queries
      * (i.e. typically INSERT, UPDATE, DELETE statements) or
      * SQL queries that have no result, using batch execution
      *
-     * @param query The query to executeUpdate
+     * @param query The query to execute
      * @return Either the row counts for SQL Data Manipulation Language (DML)
      * statements or 0 for SQL statements that return nothing
      * @throws JdbcException From all underlying JDBC calls
@@ -40,20 +40,20 @@ public interface QueryExecutor {
     int[] executeBatch(Query query);
 
     /**
-     * Executes SELECT statements and returns the first (and possibly only) result
+     * Executes SELECT statements and maps resultSet to result object
      *
-     * @param query The query to executeUpdate
+     * @param query The query to execute
      * @param <T>   The result type
-     * @return The resulting object (retrieved from the result set)
+     * @return The resulting object (created from the result set)
      * or null if result set was empty
      * @throws JdbcException From all underlying JDBC calls
      */
-    <T> T uniqueResult(QueryWithResult<T> query);
+    <T> T query(QueryWithResult<T> query);
 
     /**
-     * Executes SELECT statements and returns all results
+     * Executes SELECT statements and returns all results as a list
      *
-     * @param query The query to executeUpdate
+     * @param query The query to execute
      * @param <T>   The result type
      * @return The list of all resulting objects (retrieved from the result
      * set). The list may be empty if the result set was empty.
@@ -67,5 +67,5 @@ public interface QueryExecutor {
      * @param query The iterating query
      * @throws JdbcException From all underlying JDBC calls
      */
-    void iterateResults(IteratingQuery query);
+    void iterate(IteratingQuery query);
 }

@@ -20,11 +20,15 @@ public class QueryExecutorImpl implements QueryExecutor {
      * @param dataSourceProvider The data source provider
      */
     public QueryExecutorImpl(DataSourceProvider dataSourceProvider) {
-        this.ds = dataSourceProvider.getDataSource();
+        this(dataSourceProvider.getDataSource());
+    }
+
+    public QueryExecutorImpl(DataSource dataSource) {
+        ds = dataSource;
     }
 
     @Override
-    public void callProc(Query query) {
+    public void call(Query query) {
 
         try (Connection conn = ds.getConnection();
              CallableStatement call = conn.prepareCall(query.getSql())) {
@@ -38,7 +42,7 @@ public class QueryExecutorImpl implements QueryExecutor {
     }
 
     @Override
-    public int executeUpdate(Query query) {
+    public int execute(Query query) {
 
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = prepare(conn, query)) {
@@ -66,7 +70,7 @@ public class QueryExecutorImpl implements QueryExecutor {
     }
 
     @Override
-    public <T> T uniqueResult(QueryWithResult<T> query) {
+    public <T> T query(QueryWithResult<T> query) {
 
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = prepare(conn, query)) {
@@ -98,7 +102,7 @@ public class QueryExecutorImpl implements QueryExecutor {
     }
 
     @Override
-    public void iterateResults(IteratingQuery query) {
+    public void iterate(IteratingQuery query) {
 
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = prepare(conn, query)) {
