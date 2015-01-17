@@ -5,6 +5,6 @@ package org.guppy4j.messaging;
  */
 public interface WritablePayload extends Payload {
 
-    void set(String expression, String value);
+    boolean set(String expression, String value);
 
 }

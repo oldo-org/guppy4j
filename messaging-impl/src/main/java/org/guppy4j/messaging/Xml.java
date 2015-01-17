@@ -81,9 +81,14 @@ public class Xml implements Tree {
     }
 
     @Override
-    public void set(String xpath, String value) {
+    public boolean set(String xpath, String value) {
         final Node node = eval(xpath, Node.class);
-        node.setTextContent(value);
+        if (node != null) {
+            node.setTextContent(value);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
