@@ -8,4 +8,7 @@ public interface Validator {
     void checkExists(String value, String name);
 
     void validateLength(String s, int expectedLength, String name);
+
+    void checkNotNull(Object o, String name);
+
 }

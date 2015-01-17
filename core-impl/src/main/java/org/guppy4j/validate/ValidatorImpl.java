@@ -6,9 +6,7 @@ package org.guppy4j.validate;
 public class ValidatorImpl implements Validator {
 
     public void checkExists(String value, String name) {
-        if (value == null) {
-            throw new IllegalArgumentException(name + " is null");
-        }
+        checkNotNull(value, name);
         if (value.trim().isEmpty()) {
             throw new IllegalArgumentException(name + " is empty");
         }
@@ -19,6 +17,13 @@ public class ValidatorImpl implements Validator {
         if (s.length() != expectedLength) {
             throw new IllegalArgumentException(name + " must be "
                     + expectedLength + " character long");
+        }
+    }
+
+    @Override
+    public void checkNotNull(Object object, String name) {
+        if (object == null) {
+            throw new IllegalArgumentException(name + " is null");
         }
     }
 }
