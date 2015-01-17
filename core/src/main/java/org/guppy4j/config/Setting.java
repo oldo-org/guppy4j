@@ -17,7 +17,7 @@ public interface Setting {
 
     /**
      * @return The value of the setting, if not null
-     * @throws IllegalStateException if setting is null
+     * @throws IllegalStateException if setting value is null
      */
     String valueNotNull();
 
@@ -27,12 +27,15 @@ public interface Setting {
     char asChar();
 
     /**
-     * @return The converted value for the name
+     * @return The value of the setting as an int
      * @throws NumberFormatException If value cannot be parsed as an int
      */
     int asInt();
 
-
+    /**
+     * @param separator Separator character
+     * @return All the separated parts of the value
+     */
     String[] valueSplitBy(char separator);
 
 }
