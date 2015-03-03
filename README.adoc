@@ -12,6 +12,9 @@ If you need more stability, wait for the 1.0.0 release.
 image:https://buildhive.cloudbees.com/job/guppy4j/job/libraries/badge/icon[
 link="https://buildhive.cloudbees.com/job/guppy4j/job/libraries/"]
 
+image:https://travis-ci.org/guppy4j/libraries.svg?branch=master[
+link="https://travis-ci.org/guppy4j/libraries"]
+
 == About the name
 
 [quote, Oct 2014, paraphrasing Wikipedia]
