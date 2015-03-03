@@ -54,4 +54,10 @@ public final class StdAudioPlayer implements AudioPlayer {
             log.as(error, e);
         }
     }
+
+    @Override
+    public void stopAll() {
+        directPlayer.stopAll();
+        convertingPlayer.stopAll();
+    }
 }

@@ -10,4 +10,6 @@ import java.net.URL;
 public interface AudioPlayer {
 
     void play(URL url) throws IOException, UnsupportedAudioFileException;
+
+    void stopAll();
 }

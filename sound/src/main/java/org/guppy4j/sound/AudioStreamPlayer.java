@@ -10,4 +10,6 @@ import java.io.IOException;
 public interface AudioStreamPlayer {
 
     void play(AudioInputStream stream) throws LineUnavailableException, IOException;
+
+    void stopAll();
 }

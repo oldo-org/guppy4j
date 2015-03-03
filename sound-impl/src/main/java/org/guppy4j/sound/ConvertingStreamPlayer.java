@@ -10,6 +10,8 @@ import javax.sound.sampled.DataLine.Info;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.io.IOException;
+import java.util.Deque;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
@@ -22,6 +24,8 @@ import static org.guppy4j.log.Log.Level.debug;
 public final class ConvertingStreamPlayer implements AudioStreamPlayer {
 
     private static final int DEFAULT_BUFFER_SIZE = 65536;
+
+    private final Deque<SourceDataLine> linesPlaying = new ConcurrentLinkedDeque<>();
 
     private final Log log;
     private final int bufferSize;
@@ -37,7 +41,7 @@ public final class ConvertingStreamPlayer implements AudioStreamPlayer {
 
     @Override
     public void play(final AudioInputStream stream)
-            throws LineUnavailableException, IOException {
+        throws LineUnavailableException, IOException {
 
         final AudioFormat outFormat = getOutFormat(stream.getFormat());
         final Info info = new Info(SourceDataLine.class, outFormat);
@@ -45,18 +49,29 @@ public final class ConvertingStreamPlayer implements AudioStreamPlayer {
         log.as(debug, "Playing started ...");
 
         try (final SourceDataLine line =
-                     (SourceDataLine) AudioSystem.getLine(info)) {
+                 (SourceDataLine) AudioSystem.getLine(info)) {
 
             if (line != null) {
                 line.open(outFormat);
+                linesPlaying.add(line);
                 line.start();
                 stream(getAudioInputStream(outFormat, stream), line);
                 line.drain();
                 line.stop();
+                linesPlaying.remove(line);
             }
         }
 
         log.as(debug, "Playing ended ...");
+    }
+
+    @Override
+    public void stopAll() {
+        while (linesPlaying.peek() != null) {
+            try (final SourceDataLine line = linesPlaying.pop()) {
+                line.stop();
+            }
+        }
     }
 
     private static AudioFormat getOutFormat(AudioFormat inFormat) {
