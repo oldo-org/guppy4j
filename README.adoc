@@ -21,5 +21,4 @@ link="https://travis-ci.org/guppy4j/libraries"]
 ____
 Guppies, also known as "Millions fish", were introduced to many habitats and are now found all over the world. 
 They are highly adaptable and thrive in many different environmental and ecological conditions. 
-Their natural habitat range is in northeast South America.
 ____
