@@ -5,7 +5,7 @@
     <parent>
         <artifactId>libraries</artifactId>
         <groupId>org.guppy4j</groupId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>sound</artifactId>
