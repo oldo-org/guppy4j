@@ -10,12 +10,4 @@
 
     <artifactId>messaging</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.guppy4j</groupId>
-            <artifactId>core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
 </project>

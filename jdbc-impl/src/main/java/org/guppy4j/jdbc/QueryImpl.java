@@ -17,7 +17,7 @@ public class QueryImpl implements Query {
     }
 
     @Override
-    public String getSql() {
+    public String sql() {
         return sql;
     }
 

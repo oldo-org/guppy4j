@@ -1,12 +1,10 @@
 package org.guppy4j.messaging;
 
-import org.guppy4j.logic.NamedValueFunction;
-
 /**
  * Converts named values according to data format rules
  */
-public interface ValueConverter extends NamedValueFunction<String, String> {
+public interface ValueConverter {
 
-    // no additional methods
+    String result(String name, String value);
 
 }

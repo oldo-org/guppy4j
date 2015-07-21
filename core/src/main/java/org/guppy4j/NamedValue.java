@@ -1,9 +1,9 @@
-package org.guppy4j.config;
+package org.guppy4j;
 
 /**
  * An encapsulated name/value pair
  */
-public interface Setting {
+public interface NamedValue {
 
     /**
      * @return The name of the setting

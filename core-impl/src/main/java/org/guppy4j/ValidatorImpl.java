@@ -1,4 +1,4 @@
-package org.guppy4j.validate;
+package org.guppy4j;
 
 /**
  * Generic validation methods
@@ -13,7 +13,7 @@ public class ValidatorImpl implements Validator {
     }
 
     @Override
-    public void validateLength(String s, int expectedLength, String name) {
+    public void checkLength(String s, int expectedLength, String name) {
         if (s.length() != expectedLength) {
             throw new IllegalArgumentException(name + " must be "
                     + expectedLength + " character long");

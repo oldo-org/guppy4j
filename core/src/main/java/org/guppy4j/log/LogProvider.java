@@ -14,10 +14,5 @@ public interface LogProvider {
     /**
      * A LogProvider instance that does nothing
      */
-    LogProvider NONE = new LogProvider() {
-        @Override
-        public Log getLog(Class<?> c) {
-            return Log.NONE;
-        }
-    };
+    LogProvider NONE = c -> Log.NONE;
 }

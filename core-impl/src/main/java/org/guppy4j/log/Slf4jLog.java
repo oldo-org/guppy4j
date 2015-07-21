@@ -38,30 +38,34 @@ public class Slf4jLog implements Log {
 
     @Override
     public void as(Level level, Throwable t) {
-        as(level, "", t);
+        as(level, t, "");
     }
 
     @Override
     public void as(Level level, Throwable t, String messageFormat, Object... parameters) {
         if (isEnabled(level)) {
             final String message = arrayFormat(messageFormat, parameters).getMessage();
-            switch (level) {
-                case error:
-                    logger.error(message, t);
-                    break;
-                case warn:
-                    logger.warn(message, t);
-                    break;
-                case info:
-                    logger.info(message, t);
-                    break;
-                case debug:
-                    logger.debug(message, t);
-                    break;
-                case trace:
-                    logger.trace(message, t);
-                    break;
-            }
+            as(level, t, message);
+        }
+    }
+
+    private void as(Level level, Throwable t, String message) {
+        switch (level) {
+            case error:
+                logger.error(message, t);
+                break;
+            case warn:
+                logger.warn(message, t);
+                break;
+            case info:
+                logger.info(message, t);
+                break;
+            case debug:
+                logger.debug(message, t);
+                break;
+            case trace:
+                logger.trace(message, t);
+                break;
         }
     }
 

@@ -31,7 +31,7 @@ public class QueryExecutorImpl implements QueryExecutor {
     public void call(Query query) {
 
         try (Connection conn = ds.getConnection();
-             CallableStatement call = conn.prepareCall(query.getSql())) {
+             CallableStatement call = conn.prepareCall(query.sql())) {
 
             query.setParams(call);
             call.execute();
@@ -118,7 +118,7 @@ public class QueryExecutorImpl implements QueryExecutor {
 
     private PreparedStatement prepare(Connection connection, Query query)
             throws SQLException {
-        return connection.prepareStatement(query.getSql());
+        return connection.prepareStatement(query.sql());
     }
 
     private ResultSet execute(Query query, PreparedStatement ps)

@@ -54,7 +54,7 @@
     </licenses>
 
     <properties>
-        <required.java.version>1.7</required.java.version>
+        <required.java.version>1.8</required.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- 3rd party library versions -->
@@ -62,7 +62,6 @@
         <logback.version>1.1.2</logback.version>
         <junit.version>4.11</junit.version>
         <xmlunit.version>1.5</xmlunit.version>
-        <camel.version>2.14.0</camel.version>
 
         <!-- maven plugin versions -->
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
@@ -85,13 +84,6 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
-            </dependency>
-
-            <!-- other compile-time dependencies -->
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core</artifactId>
-                <version>${camel.version}</version>
             </dependency>
 
             <!-- test dependencies-->
@@ -123,6 +115,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

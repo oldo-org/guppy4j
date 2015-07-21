@@ -1,7 +1,7 @@
 package org.guppy4j.messaging;
 
-import org.guppy4j.config.Setting;
-import org.guppy4j.config.Settings;
+import org.guppy4j.NamedValue;
+import org.guppy4j.NamedValues;
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
 import org.guppy4j.logic.Predicate;
@@ -13,27 +13,27 @@ import static org.guppy4j.log.Log.Level.debug;
  */
 public class ConfigurableFilterCondition implements Predicate<ReadableTree> {
 
-    private final Settings filterSettings;
+    private final NamedValues filterRules;
     private final Log log;
 
-    public ConfigurableFilterCondition(Settings filterSettings,
+    public ConfigurableFilterCondition(NamedValues filterRules,
                                        LogProvider logProvider) {
         log = logProvider.getLog(getClass());
-        this.filterSettings = filterSettings;
+        this.filterRules = filterRules;
     }
 
     public boolean isTrueFor(ReadableTree message) {
-        for (Setting setting : filterSettings.all()) {
+        for (NamedValue rule : filterRules.all()) {
 
-            final String filterExpression = setting.name();
+            final String filterExpression = rule.name();
 
             final String value = message.get(filterExpression);
 
-            final boolean contained = contains(setting.valueSplitBy(','), value);
+            final boolean contained = contains(rule.valueSplitBy(','), value);
 
             log.as(debug, "Value {} is {} in filter values [{}] (expr={})",
                     value, contained ? "contained" : "NOT",
-                    setting.value(), filterExpression);
+                    rule.value(), filterExpression);
 
             if (not(contained)) {
                 return false;

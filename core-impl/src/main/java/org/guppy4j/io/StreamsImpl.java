@@ -8,33 +8,36 @@ import java.io.OutputStream;
 /**
  * Default stream helper
  */
-public class StreamHelperImpl implements StreamHelper {
+public class StreamsImpl implements Streams {
 
     private final int bufferSize;
 
-    public StreamHelperImpl(int bufferSize) {
+    public StreamsImpl(int bufferSize) {
         this.bufferSize = bufferSize;
     }
 
     @Override
-    public byte[] copyToByteArray(InputStream in) throws IOException {
+    public byte[] allBytes(InputStream in) {
         final ByteArrayOutputStream out = new ByteArrayOutputStream(bufferSize);
         copy(in, out);
         return out.toByteArray();
     }
 
     @Override
-    public int copy(InputStream in, OutputStream out) throws IOException {
+    public int copy(InputStream in, OutputStream out) {
+        final byte[] buf = new byte[bufferSize];
+        int total = 0;
         try {
-            int byteCount = 0;
-            byte[] buffer = new byte[bufferSize];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-                byteCount += bytesRead;
+            for (int read = in.read(buf);
+                 read != -1;
+                 read = in.read(buf)) {
+
+                out.write(buf, 0, read);
+                total += read;
             }
             out.flush();
-            return byteCount;
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
         } finally {
             try {
                 in.close();
@@ -47,5 +50,6 @@ public class StreamHelperImpl implements StreamHelper {
                 // ignore (nothing we can do)
             }
         }
+        return total;
     }
 }

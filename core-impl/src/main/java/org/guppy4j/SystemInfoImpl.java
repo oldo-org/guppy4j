@@ -1,4 +1,4 @@
-package org.guppy4j.config;
+package org.guppy4j;
 
 import org.guppy4j.log.LogProvider;
 
@@ -14,10 +14,10 @@ import java.util.Collection;
  */
 public class SystemInfoImpl implements SystemInfo {
 
-    private final Settings settings;
+    private final NamedValues systemValues;
 
     public SystemInfoImpl(LogProvider logProvider) {
-        this.settings = new PropertiesSettings(logProvider,
+        this.systemValues = new NamedValuesImpl(logProvider,
                 System.getProperties(), "System properties");
     }
 
@@ -110,8 +110,8 @@ public class SystemInfoImpl implements SystemInfo {
         return notNullValue("user.name");
     }
 
-    private static Iterable<Path> splitPaths(Setting setting, char separator) {
-        final String[] pathItems = setting.valueSplitBy(separator);
+    private static Iterable<Path> splitPaths(NamedValue namedValue, char separator) {
+        final String[] pathItems = namedValue.valueSplitBy(separator);
         final Collection<Path> paths = new ArrayList<>(pathItems.length);
         for (String pathItem : pathItems) {
             paths.add(Paths.get(pathItem));
@@ -131,7 +131,7 @@ public class SystemInfoImpl implements SystemInfo {
         return get(name).valueNotNull();
     }
 
-    private Setting get(String name) {
-        return settings.get(name);
+    private NamedValue get(String name) {
+        return systemValues.get(name);
     }
 }

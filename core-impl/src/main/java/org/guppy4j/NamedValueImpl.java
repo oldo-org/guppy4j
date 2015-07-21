@@ -1,4 +1,4 @@
-package org.guppy4j.config;
+package org.guppy4j;
 
 import org.guppy4j.util.StringSplitter;
 import org.guppy4j.util.StringSplitterImpl;
@@ -8,14 +8,14 @@ import static java.lang.String.format;
 /**
  * Setting implementation
  */
-public class SettingImpl implements Setting {
+public class NamedValueImpl implements NamedValue {
 
     private final StringSplitter stringSplitter = new StringSplitterImpl();
 
     private final String name;
     private final String value;
 
-    public SettingImpl(String name, String value) {
+    public NamedValueImpl(String name, String value) {
         this.name = name;
         this.value = value;
     }

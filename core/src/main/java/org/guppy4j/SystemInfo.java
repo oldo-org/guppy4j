@@ -1,4 +1,4 @@
-package org.guppy4j.config;
+package org.guppy4j;
 
 import java.net.URL;
 import java.nio.file.Path;
@@ -10,7 +10,6 @@ import java.nio.file.Path;
  *
  * @see System#getProperties()
  */
-@SuppressWarnings("UnusedDeclaration")
 public interface SystemInfo {
 
     /**
