@@ -43,6 +43,8 @@
         <module>sound-impl</module>
         <module>uml</module>
         <module>uml-impl</module>
+        <module>io</module>
+        <module>io-impl</module>
     </modules>
 
     <licenses>

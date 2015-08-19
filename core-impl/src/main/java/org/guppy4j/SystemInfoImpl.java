@@ -14,10 +14,10 @@ import java.util.Collection;
  */
 public class SystemInfoImpl implements SystemInfo {
 
-    private final NamedValues systemValues;
+    private final NamedStrings systemValues;
 
     public SystemInfoImpl(LogProvider logProvider) {
-        this.systemValues = new NamedValuesImpl(logProvider,
+        this.systemValues = new NamedStringsImpl(logProvider,
                 System.getProperties(), "System properties");
     }
 
@@ -110,8 +110,8 @@ public class SystemInfoImpl implements SystemInfo {
         return notNullValue("user.name");
     }
 
-    private static Iterable<Path> splitPaths(NamedValue namedValue, char separator) {
-        final String[] pathItems = namedValue.valueSplitBy(separator);
+    private static Iterable<Path> splitPaths(NamedString namedString, char separator) {
+        final String[] pathItems = namedString.splitBy(separator);
         final Collection<Path> paths = new ArrayList<>(pathItems.length);
         for (String pathItem : pathItems) {
             paths.add(Paths.get(pathItem));
@@ -128,10 +128,10 @@ public class SystemInfoImpl implements SystemInfo {
     }
 
     private String notNullValue(String name) {
-        return get(name).valueNotNull();
+        return get(name).getNotNull();
     }
 
-    private NamedValue get(String name) {
+    private NamedString get(String name) {
         return systemValues.get(name);
     }
 }

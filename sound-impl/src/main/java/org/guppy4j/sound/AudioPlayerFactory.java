@@ -1,12 +1,13 @@
 package org.guppy4j.sound;
 
 import org.guppy4j.log.LogProvider;
-import org.guppy4j.logic.Source;
+
+import java.util.function.Supplier;
 
 /**
  * Convenient creation of AudioPlayer instances
  */
-public class AudioPlayerFactory implements Source<AudioPlayer> {
+public class AudioPlayerFactory implements Supplier<AudioPlayer> {
 
     private final LogProvider logProvider;
 

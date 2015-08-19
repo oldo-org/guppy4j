@@ -3,7 +3,7 @@ package org.guppy4j;
 /**
  * An encapsulated name/value pair
  */
-public interface NamedValue {
+public interface NamedString {
 
     /**
      * @return The name of the setting
@@ -13,13 +13,13 @@ public interface NamedValue {
     /**
      * @return The value of the setting
      */
-    String value();
+    String get();
 
     /**
      * @return The value of the setting, if not null
      * @throws IllegalStateException if setting value is null
      */
-    String valueNotNull();
+    String getNotNull();
 
     /**
      * @return The value of the setting as a character
@@ -36,6 +36,6 @@ public interface NamedValue {
      * @param separator Separator character
      * @return All the separated parts of the value
      */
-    String[] valueSplitBy(char separator);
+    String[] splitBy(char separator);
 
 }

@@ -29,7 +29,6 @@ public class QueryExecutorImpl implements QueryExecutor {
 
     @Override
     public void call(Query query) {
-
         try (Connection conn = ds.getConnection();
              CallableStatement call = conn.prepareCall(query.sql())) {
 
@@ -43,85 +42,61 @@ public class QueryExecutorImpl implements QueryExecutor {
 
     @Override
     public int execute(Query query) {
-
-        try (Connection conn = ds.getConnection();
-             PreparedStatement ps = prepare(conn, query)) {
-
+        return tryStatement(query, (ps) -> {
             query.setParams(ps);
             return ps.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new JdbcException(e);
-        }
+        });
     }
 
     @Override
     public int[] executeBatch(Query query) {
-
-        try (Connection conn = ds.getConnection();
-             PreparedStatement ps = prepare(conn, query)) {
-
+        return tryStatement(query, (ps) -> {
             query.setParams(ps);
             return ps.executeBatch();
-
-        } catch (SQLException e) {
-            throw new JdbcException(e);
-        }
+        });
     }
 
     @Override
     public <T> T query(QueryWithResult<T> query) {
-
-        try (Connection conn = ds.getConnection();
-             PreparedStatement ps = prepare(conn, query)) {
-
+        return tryStatement(query, (ps) -> {
             final ResultSet rs = execute(query, ps);
             return rs.next() ? query.getResult(rs) : null;
-
-        } catch (SQLException e) {
-            throw new JdbcException(e);
-        }
+        });
     }
 
     @Override
     public <T> List<T> list(QueryWithResult<T> query) {
-
-        try (Connection conn = ds.getConnection();
-             PreparedStatement ps = prepare(conn, query)) {
-
+        return tryStatement(query, (ps) -> {
             final ResultSet rs = execute(query, ps);
             final List<T> list = new ArrayList<>();
             while (rs.next()) {
                 list.add(query.getResult(rs));
             }
             return list;
-
-        } catch (SQLException e) {
-            throw new JdbcException(e);
-        }
+        });
     }
 
     @Override
     public void iterate(IteratingQuery query) {
-
-        try (Connection conn = ds.getConnection();
-             PreparedStatement ps = prepare(conn, query)) {
-
+        tryStatement(query, (ps) -> {
             final ResultSet rs = execute(query, ps);
             while (rs.next()) {
                 query.next(rs);
             }
+            return null;
+        });
+    }
+
+    private <X> X tryStatement(Query query, JdbcAction<X> action) {
+        try (Connection conn = ds.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query.sql())) {
+            return action.execute(ps);
         } catch (SQLException e) {
             throw new JdbcException(e);
         }
     }
 
-    private PreparedStatement prepare(Connection connection, Query query)
-            throws SQLException {
-        return connection.prepareStatement(query.sql());
-    }
-
-    private ResultSet execute(Query query, PreparedStatement ps)
+    private static ResultSet execute(Query query, PreparedStatement ps)
             throws SQLException {
         query.setParams(ps);
         return ps.executeQuery();

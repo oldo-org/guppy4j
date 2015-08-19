@@ -8,14 +8,14 @@ import static java.lang.String.format;
 /**
  * Setting implementation
  */
-public class NamedValueImpl implements NamedValue {
+public class NamedStringImpl implements NamedString {
 
     private final StringSplitter stringSplitter = new StringSplitterImpl();
 
     private final String name;
     private final String value;
 
-    public NamedValueImpl(String name, String value) {
+    public NamedStringImpl(String name, String value) {
         this.name = name;
         this.value = value;
     }
@@ -26,12 +26,12 @@ public class NamedValueImpl implements NamedValue {
     }
 
     @Override
-    public String value() {
+    public String get() {
         return value;
     }
 
     @Override
-    public String valueNotNull() {
+    public String getNotNull() {
         if (value != null) {
             return value;
         } else {
@@ -55,7 +55,7 @@ public class NamedValueImpl implements NamedValue {
     }
 
     @Override
-    public String[] valueSplitBy(char separator) {
+    public String[] splitBy(char separator) {
         return value == null ? null : stringSplitter.split(value, separator);
     }
 }

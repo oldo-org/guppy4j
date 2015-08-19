@@ -12,10 +12,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.guppy4j</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>jdbc</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>static</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.h2database</groupId>

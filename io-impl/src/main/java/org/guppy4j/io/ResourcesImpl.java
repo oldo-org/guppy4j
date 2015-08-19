@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.function.Function;
 
-import static org.guppy4j.Exceptions.tryTo;
+import static org.guppy4j.Exceptions.tryCatchWrap;
 import static org.guppy4j.io.Charsets.UTF_8;
 
 /**
@@ -39,7 +39,7 @@ public final class ResourcesImpl implements Resources {
     public Properties properties(URL url) {
         return open(url, stream -> {
             final Properties p = new Properties();
-            tryTo(() -> p.load(stream));
+            tryCatchWrap(() -> p.load(stream), IOException.class, IllegalStateException::new);
             return p;
         });
     }
