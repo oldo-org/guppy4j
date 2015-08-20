@@ -11,20 +11,21 @@ public final class Exceptions {
         void doIt() throws E;
     }
 
-    public static <T extends RuntimeException, E extends Exception> void tryCatchWrap(
+    public static <RE extends RuntimeException, E extends Exception> void tryCatchWrap(
             DoSomething<E> something,
             Class<E> exClass,
-            Function<Exception, T> exWrapper) {
+            Function<Exception, RE> exWrapper)
+            throws RE {
         try {
             something.doIt();
-        } catch (RuntimeException e) {
-            throw e;
+        } catch (RuntimeException re) {
+            throw re;
         } catch (Exception e) {
             if (exClass.isInstance(e)) {
                 throw exWrapper.apply(e);
             } else {
                 // cannot happen
-                throw new RuntimeException();
+                throw new RuntimeException("Unexpected checked exception", e);
             }
         }
     }
