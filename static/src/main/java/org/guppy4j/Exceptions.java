@@ -11,13 +11,18 @@ public final class Exceptions {
         void doIt() throws E;
     }
 
-    public static <RE extends RuntimeException, E extends Exception> void tryCatchWrap(
-            DoSomething<E> something,
+    public interface ReturnSomething<P, R, E extends Exception> {
+        R doIt(P parameter) throws E;
+    }
+
+    public static <P, R, RE extends RuntimeException, E extends Exception>
+    R tryCatchWrap(
+            ReturnSomething<P, R, E> something,
+            P parameter,
             Class<E> exClass,
-            Function<Exception, RE> exWrapper)
-            throws RE {
+            Function<Exception, RE> exWrapper) {
         try {
-            something.doIt();
+            return something.doIt(parameter);
         } catch (RuntimeException re) {
             throw re;
         } catch (Exception e) {
@@ -28,5 +33,16 @@ public final class Exceptions {
                 throw new RuntimeException("Unexpected checked exception", e);
             }
         }
+    }
+
+    public static <RE extends RuntimeException, E extends Exception>
+    void tryCatchWrap(DoSomething<E> something,
+                      Class<E> exClass, Function<Exception, RE> exWrapper)
+            throws RE {
+        tryCatchWrap(parameter -> {
+                    something.doIt();
+                    return null;
+                },
+                null, exClass, exWrapper);
     }
 }
