@@ -12,6 +12,11 @@ If you need more stability, wait for the 1.0.0 release.
 image:https://travis-ci.org/guppy4j/libraries.svg?branch=master[
 link="https://travis-ci.org/guppy4j/libraries"]
 
+== Maven Central
+
+image:https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries/badge.svg[
+link="https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries"]
+
 == About the name
 
 [quote, Oct 2014, paraphrasing Wikipedia]
