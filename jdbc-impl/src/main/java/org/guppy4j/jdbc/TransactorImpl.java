@@ -1,11 +1,10 @@
 package org.guppy4j.jdbc;
 
-import org.guppy4j.Exceptions.DoSomething;
+import org.guppy4j.exceptions.ActionToTry;
+import org.guppy4j.exceptions.ExceptionHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import static org.guppy4j.Exceptions.tryCatchWrap;
 
 /**
  * JDBC transaction support
@@ -13,6 +12,9 @@ import static org.guppy4j.Exceptions.tryCatchWrap;
 public class TransactorImpl implements Transactor {
 
     private final Connection connection;
+
+    private final ExceptionHandler<SQLException> exWrapper =
+            new ExceptionHandler<>(SQLException.class, JdbcException::new);
 
     public TransactorImpl(Connection connection) {
         this.connection = connection;
@@ -35,11 +37,11 @@ public class TransactorImpl implements Transactor {
         tryJdbc(setAutoCommit(true));
     }
 
-    private DoSomething<SQLException> setAutoCommit(boolean autoCommit) {
+    private ActionToTry<SQLException> setAutoCommit(boolean autoCommit) {
         return () -> connection.setAutoCommit(autoCommit);
     }
 
-    private static void tryJdbc(DoSomething<SQLException> something) {
-        tryCatchWrap(something, SQLException.class, JdbcException::new);
+    private void tryJdbc(ActionToTry<SQLException> jdbcAction) {
+        exWrapper.tryUnchecked(jdbcAction);
     }
 }

@@ -1,6 +1,7 @@
 package org.guppy4j.io;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,17 +40,18 @@ public class StreamsImpl implements Streams {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                // ignore (nothing we can do)
-            }
-            try {
-                out.close();
-            } catch (IOException ex) {
-                // ignore (nothing we can do)
-            }
+            close(in);
+            close(out);
         }
         return total;
+    }
+
+    private void close(Closeable closeable) {
+        try {
+            closeable.close();
+        } catch (IOException ex) {
+            // ignore (nothing we can do)
+            // TODO : log a warning
+        }
     }
 }

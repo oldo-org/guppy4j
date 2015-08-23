@@ -1,12 +1,12 @@
 package org.guppy4j.io;
 
+import org.guppy4j.exceptions.FunctionToTry;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
-import java.util.function.Function;
 
-import static org.guppy4j.Exceptions.tryCatchWrap;
 import static org.guppy4j.io.Charsets.UTF_8;
 
 /**
@@ -27,7 +27,11 @@ public final class ResourcesImpl implements Resources {
 
     @Override
     public String content(URL url) {
-        return open(url, stream -> new String(streams.allBytes(stream), UTF_8));
+        return open(url, this::content);
+    }
+
+    private String content(InputStream stream) throws IOException {
+        return new String(streams.allBytes(stream), UTF_8);
     }
 
     @Override
@@ -37,18 +41,21 @@ public final class ResourcesImpl implements Resources {
 
     @Override
     public Properties properties(URL url) {
-        return open(url, stream -> {
-            final Properties p = new Properties();
-            tryCatchWrap(() -> p.load(stream), IOException.class, IllegalStateException::new);
-            return p;
-        });
+        return open(url, this::properties);
     }
 
-    private URL url(String resourceLocation) {
-        return getClass().getResource(resourceLocation);
+    private Properties properties(InputStream stream) throws IOException {
+        final Properties p = new Properties();
+        p.load(stream);
+        return p;
     }
 
-    private static <T> T open(URL url, Function<InputStream, T> streamLoader) {
+    private static URL url(String resourceLocation) {
+        return ResourcesImpl.class.getResource(resourceLocation);
+    }
+
+    private static <T> T open(URL url,
+                              FunctionToTry<InputStream, T, IOException> streamLoader) {
         try (InputStream stream = url.openStream()) {
             return streamLoader.apply(stream);
         } catch (IOException e) {
