@@ -129,17 +129,22 @@
                 <configuration>
                     <source>${required.java.version}</source>
                     <target>${required.java.version}</target>
+
                     <!--work-around for javac bug in jdk8 version used by travis-ci-->
-                    <compilerId>eclipse</compilerId>
-                    <optimize>true</optimize>
+                    <!--
+                                        <compilerId>eclipse</compilerId>
+                                        <optimize>true</optimize>
+                    -->
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.plexus</groupId>
-                        <artifactId>plexus-compiler-eclipse</artifactId>
-                        <version>2.5</version>
-                    </dependency>
-                </dependencies>
+                <!--
+                                <dependencies>
+                                    <dependency>
+                                        <groupId>org.codehaus.plexus</groupId>
+                                        <artifactId>plexus-compiler-eclipse</artifactId>
+                                        <version>2.5</version>
+                                    </dependency>
+                                </dependencies>
+                -->
             </plugin>
 
             <plugin>
