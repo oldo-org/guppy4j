@@ -13,11 +13,12 @@ public class TransactorImpl implements Transactor {
 
     private final Connection connection;
 
-    private final ExceptionHandler<SQLException> exWrapper =
-            new ExceptionHandler<>(SQLException.class, JdbcException::new);
+    private final ExceptionHandler<SQLException> exHandler;
 
-    public TransactorImpl(Connection connection) {
+    public TransactorImpl(Connection connection,
+                          ExceptionHandler<SQLException> exHandler) {
         this.connection = connection;
+        this.exHandler = exHandler;
     }
 
     @Override
@@ -42,6 +43,6 @@ public class TransactorImpl implements Transactor {
     }
 
     private void tryJdbc(ActionToTry<SQLException> jdbcAction) {
-        exWrapper.tryUnchecked(jdbcAction);
+        exHandler.tryUnchecked(jdbcAction);
     }
 }

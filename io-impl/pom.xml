@@ -15,12 +15,10 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>io</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>core-impl</artifactId>
-            <version>${project.version}</version>
+            <artifactId>core</artifactId>
         </dependency>
     </dependencies>
 

@@ -12,14 +12,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.guppy4j</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>event</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.guppy4j</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>static</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
