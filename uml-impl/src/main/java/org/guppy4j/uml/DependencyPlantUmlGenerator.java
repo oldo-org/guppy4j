@@ -26,11 +26,15 @@ public class DependencyPlantUmlGenerator {
     }
 
     public void generate(Package basePackage, Path baseDir, String targetFileName) {
+        generate(format("^%s.*", basePackage.getName()), baseDir, targetFileName);
+    }
+
+    public void generate(String packageNamePattern, Path baseDir, String targetFileName) {
         for (Path dir : subDirs(baseDir)) {
             final String dirPath = dir.toAbsolutePath().toString();
             execute("-b", dirPath,
                     "-o", format("%s/%s", dirPath, targetFileName),
-                    "-dp", format("^%s.*", basePackage.getName()));
+                    "-dp", packageNamePattern);
         }
     }
 
