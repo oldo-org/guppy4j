@@ -11,8 +11,7 @@ import static org.guppy4j.BaseUtil.bothNullOrEqual;
  */
 public class ChangeSupport<T> implements ChangePropagator<T> {
 
-    private final Collection<ChangeListener<T>> listeners =
-            new LinkedList<>();
+    private final Collection<ChangeListener<T>> listeners = new LinkedList<>();
 
     @Override
     public void addListener(ChangeListener<T> listener) {

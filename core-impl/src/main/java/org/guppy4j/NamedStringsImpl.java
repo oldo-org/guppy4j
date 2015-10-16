@@ -37,7 +37,7 @@ public class NamedStringsImpl implements NamedStrings {
 
         final Log log = logProvider.getLog(getClass());
         log.as(info, "Settings loaded from {}", propertiesOrigin);
-        log.as(info, "Number of name/get pairs: {}", map.size());
+        log.as(info, "Number of name/value pairs: {}", map.size());
     }
 
     @Override
