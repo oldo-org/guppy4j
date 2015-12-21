@@ -1,18 +1,21 @@
 package org.guppy4j.io;
 
-import org.guppy4j.exceptions.FunctionToTry;
+import static org.guppy4j.io.Charsets.UTF_8;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.util.Properties;
 
-import static org.guppy4j.io.Charsets.UTF_8;
+import org.guppy4j.exceptions.FunctionToTry;
 
 /**
  * Default resource helper
  */
 public final class ResourcesImpl implements Resources {
+
+    private static final Class<?> myClass = MethodHandles.lookup().lookupClass();
 
     private final Streams streams;
 
@@ -51,11 +54,10 @@ public final class ResourcesImpl implements Resources {
     }
 
     private static URL url(String resourceLocation) {
-        return ResourcesImpl.class.getResource(resourceLocation);
+        return myClass.getResource(resourceLocation);
     }
 
-    private static <T> T open(URL url,
-                              FunctionToTry<InputStream, T, IOException> streamLoader) {
+    private static <T> T open(URL url, FunctionToTry<InputStream, T, IOException> streamLoader) {
         try (InputStream stream = url.openStream()) {
             return streamLoader.apply(stream);
         } catch (IOException e) {

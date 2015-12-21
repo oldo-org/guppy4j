@@ -1,10 +1,11 @@
 package org.guppy4j.event;
 
 
+import static org.guppy4j.BaseUtil.bothNullOrEqual;
+import static org.guppy4j.BaseUtil.not;
+
 import java.util.Collection;
 import java.util.LinkedList;
-
-import static org.guppy4j.BaseUtil.bothNullOrEqual;
 
 /**
  * Helper class for change event propagation
@@ -20,11 +21,10 @@ public class ChangeSupport<T> implements ChangePropagator<T> {
 
     @Override
     public void handleChange(T before, T after) {
-        if (bothNullOrEqual(before, after)) {
-            return;
-        }
-        for (ChangeListener<T> listener : listeners) {
-            listener.handleChange(before, after);
+        if (not(bothNullOrEqual(before, after))) {
+            for (ChangeListener<T> listener : listeners) {
+                listener.handleChange(before, after);
+            }
         }
     }
 }

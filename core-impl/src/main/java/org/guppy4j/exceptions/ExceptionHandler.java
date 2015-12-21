@@ -11,8 +11,7 @@ public final class ExceptionHandler<E extends Exception> {
     private final Class<E> exType;
     private final Function<E, RuntimeException> exConverter;
 
-    public ExceptionHandler(Class<E> exType,
-                            Function<E, RuntimeException> exConverter) {
+    public ExceptionHandler(Class<E> exType, Function<E, RuntimeException> exConverter) {
         if (RuntimeException.class.isAssignableFrom(exType)) {
             throw new IllegalArgumentException(exType + " must be a checked exception type");
         }
@@ -34,8 +33,7 @@ public final class ExceptionHandler<E extends Exception> {
         }, null);
     }
 
-    public <P, R> R tryUnchecked(FunctionToTry<P, R, E> function,
-                                 P parameter) {
+    public <P, R> R tryUnchecked(FunctionToTry<P, R, E> function, P parameter) {
         try {
             return function.apply(parameter);
         } catch (RuntimeException re) {
@@ -44,7 +42,7 @@ public final class ExceptionHandler<E extends Exception> {
             if (exType.isInstance(e)) {
                 throw exConverter.apply(exType.cast(e));
             } else {
-                throw new RuntimeException("Unexpected checked exception", e);
+                throw new IllegalStateException("Unexpected checked exception", e);
             }
         }
     }
