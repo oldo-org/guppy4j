@@ -1,6 +1,5 @@
 package org.guppy4j.jdbc;
 
-import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 /**
  * Safely executes JDBC queries or updates
@@ -66,14 +67,9 @@ public class QueryExecutorImpl implements QueryExecutor {
 
     @Override
     public <T> List<T> list(QueryWithResult<T> query) {
-        return tryStatement(query, (ps) -> {
-            final ResultSet rs = execute(query, ps);
-            final List<T> list = new ArrayList<>();
-            while (rs.next()) {
-                list.add(query.getResult(rs));
-            }
-            return list;
-        });
+        final List<T> list = new ArrayList<>();
+        iterate(new IteratingQueryImpl(query.sql(), rs -> list.add(query.getResult(rs)), query));
+        return list;
     }
 
     @Override
@@ -87,7 +83,7 @@ public class QueryExecutorImpl implements QueryExecutor {
         });
     }
 
-    private <X> X tryStatement(Query query, JdbcAction<X> action) {
+    private <R> R tryStatement(Query query, JdbcAction<R> action) {
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = conn.prepareStatement(query.sql())) {
             return action.execute(ps);
@@ -96,8 +92,7 @@ public class QueryExecutorImpl implements QueryExecutor {
         }
     }
 
-    private static ResultSet execute(Query query, PreparedStatement ps)
-            throws SQLException {
+    private static ResultSet execute(Query query, PreparedStatement ps) throws SQLException {
         query.setParams(ps);
         return ps.executeQuery();
     }

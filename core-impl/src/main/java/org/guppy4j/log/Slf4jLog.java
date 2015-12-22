@@ -1,8 +1,8 @@
 package org.guppy4j.log;
 
-import org.slf4j.Logger;
-
 import static org.slf4j.helpers.MessageFormatter.arrayFormat;
+
+import org.slf4j.Logger;
 
 /**
  * Logs using an slf4j logger

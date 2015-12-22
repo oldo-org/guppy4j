@@ -1,7 +1,6 @@
 package org.guppy4j.io;
 
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -10,6 +9,8 @@ import java.io.OutputStream;
  * Default stream helper
  */
 public class StreamsImpl implements Streams {
+
+    private static final int END_OF_STREAM = -1;
 
     private final int bufferSize;
 
@@ -25,12 +26,13 @@ public class StreamsImpl implements Streams {
     }
 
     @Override
-    public int copy(InputStream in, OutputStream out) {
+    public int copy(InputStream inputStream, OutputStream outputStream) {
         final byte[] buf = new byte[bufferSize];
         int total = 0;
-        try {
+        // try-with-resources auto-closes the streams in a hidden finally block
+        try (InputStream in = inputStream; OutputStream out = outputStream) {
             for (int read = in.read(buf);
-                 read != -1;
+                 read != END_OF_STREAM;
                  read = in.read(buf)) {
 
                 out.write(buf, 0, read);
@@ -39,19 +41,7 @@ public class StreamsImpl implements Streams {
             out.flush();
         } catch (IOException e) {
             throw new IllegalStateException(e);
-        } finally {
-            close(in);
-            close(out);
         }
         return total;
-    }
-
-    private void close(Closeable closeable) {
-        try {
-            closeable.close();
-        } catch (IOException ex) {
-            // ignore (nothing we can do)
-            // TODO : log a warning
-        }
     }
 }

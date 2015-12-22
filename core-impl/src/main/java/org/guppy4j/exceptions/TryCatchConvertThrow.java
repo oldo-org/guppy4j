@@ -6,14 +6,12 @@ import java.util.function.Function;
  * Attempts to execute functions or actions that can throw a certain checked exception type E,
  * handles those exceptions and converts them to an unchecked exception
  */
-public final class TryCatchConvertThrow<E extends java.lang.Exception>
-        implements ExceptionHandler<E> {
+public final class ExceptionHandler<E extends Exception> {
 
     private final Class<E> exType;
     private final Function<E, RuntimeException> exConverter;
 
-    public TryCatchConvertThrow(Class<E> exType,
-                                Function<E, RuntimeException> exConverter) {
+    public ExceptionHandler(Class<E> exType, Function<E, RuntimeException> exConverter) {
         if (RuntimeException.class.isAssignableFrom(exType)) {
             throw new IllegalArgumentException(exType + " must be a checked exception type");
         }
@@ -28,7 +26,6 @@ public final class TryCatchConvertThrow<E extends java.lang.Exception>
      *
      * @param action The action to execute that might throw an E
      */
-    @Override
     public void tryUnchecked(ActionToTry<E> action) {
         tryUnchecked(noParam -> {
             action.execute();
@@ -36,18 +33,16 @@ public final class TryCatchConvertThrow<E extends java.lang.Exception>
         }, null);
     }
 
-    @Override
-    public <P, R> R tryUnchecked(FunctionToTry<P, R, E> function,
-                                 P parameter) {
+    public <P, R> R tryUnchecked(FunctionToTry<P, R, E> function, P parameter) {
         try {
             return function.apply(parameter);
         } catch (RuntimeException re) {
             throw re;
-        } catch (java.lang.Exception e) {
+        } catch (Exception e) {
             if (exType.isInstance(e)) {
                 throw exConverter.apply(exType.cast(e));
             } else {
-                throw new RuntimeException("Unexpected checked exception", e);
+                throw new IllegalStateException("Unexpected checked exception", e);
             }
         }
     }

@@ -9,7 +9,7 @@ import java.nio.file.Path;
  */
 public interface CharDataConverter<T> {
 
-    T from(String data);
+    T from(CharSequence data);
 
     T from(InputStream stream);
 

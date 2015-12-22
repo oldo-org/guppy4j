@@ -1,11 +1,11 @@
 package org.guppy4j.io;
 
-import java.util.Collection;
-import java.util.LinkedHashSet;
-
 import static org.guppy4j.io.MediaTypeEnum.audio;
 import static org.guppy4j.io.MediaTypeEnum.image;
 import static org.guppy4j.io.MediaTypeEnum.text;
+
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
 /**
  * File type enumeration
@@ -46,9 +46,9 @@ public enum FileTypeEnum implements FileType {
 
     public static Iterable<FileType> values(MediaTypeEnum mediaTypeEnum) {
         final Collection<FileType> result = new LinkedHashSet<>();
-        for (FileTypeEnum fileTypeEnum : values()) {
-            if (fileTypeEnum.mediaType == mediaTypeEnum) {
-                result.add(fileTypeEnum);
+        for (FileTypeEnum fte : values()) {
+            if (fte.mediaType == mediaTypeEnum) {
+                result.add(fte);
             }
         }
         return result;
