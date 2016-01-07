@@ -35,8 +35,8 @@
         <module>core-impl</module>
         <module>jdbc</module>
         <module>jdbc-impl</module>
-        <module>messaging</module>
-        <module>messaging-impl</module>
+        <module>data-tree</module>
+        <module>data-tree-xml</module>
         <module>event</module>
         <module>event-impl</module>
         <module>sound</module>
