@@ -34,6 +34,8 @@
         <module>static</module>
         <module>core</module>
         <module>core-impl</module>
+        <module>collections</module>
+        <module>collections-impl</module>
         <module>jdbc</module>
         <module>jdbc-impl</module>
         <module>data-tree</module>
