@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * A simple item sequence that allows finding the next and previous item for any given item,
- * based on a provided list of items that defines the order
+ * based on a provided list of items that defines membership and order
  */
 public final class ListSequence<T> implements Sequence<T> {
 
@@ -46,8 +46,17 @@ public final class ListSequence<T> implements Sequence<T> {
         final int index = list.indexOf(item);
         if (index == NOT_FOUND) {
             throw new IllegalArgumentException("Item not found in sequence: " + item);
+        } else {
+            return itemAt(index + steps);
         }
-        return list.get(index + steps);
+    }
+
+    private T itemAt(int i) {
+        return isValidIndex(i) ? list.get(i) : null;
+    }
+
+    private boolean isValidIndex(int i) {
+        return 0 <= i && i < list.size();
     }
 
     private static <T> void ensureNoNulls(Collection<T> collection) {

@@ -1,48 +1,41 @@
 package org.guppy4j.collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
 /**
- * Tests the ListSequence implementation of Sequence<T>
+ * Tests ListSequence
  */
 public class ListSequenceTest {
 
-    private final Sequence<String> chars = new ListSequence<>("a", "b", "c");
+    private final Sequence<String> sequence = new ListSequence<>("a", "b", "c");
 
     @Test
     public void testPrevious() {
+        assertNull("previous() should return null for the first item", sequence.previous("a"));
         final String message = "previous() should return the previous item in the sequence";
-        assertEquals(message, "a", chars.previous("b"));
-        assertEquals(message, "b", chars.previous("c"));
+        assertEquals(message, "a", sequence.previous("b"));
+        assertEquals(message, "b", sequence.previous("c"));
     }
 
     @Test
     public void testNext() {
         final String message = "next() should return the next item in the sequence";
-        assertEquals(message, "b", chars.next("a"));
-        assertEquals(message, "c", chars.next("b"));
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testNoPreviousForFirstItem() {
-        chars.previous("a");
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testNoNextForLastItem() {
-        chars.next("c");
+        assertEquals(message, "b", sequence.next("a"));
+        assertEquals(message, "c", sequence.next("b"));
+        assertNull("next() should return null for last item", sequence.next("c"));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testPreviousRejectsAnyArgumentNotInTheSequence() {
-        chars.previous("x");
+        sequence.previous("x");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNextRejectsAnyArgumentNotInTheSequence() {
-        chars.next("x");
+        sequence.next("x");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -54,5 +47,4 @@ public class ListSequenceTest {
     public void testDuplicateObjectsRejected() {
         new ListSequence<>("a", "b", "c", "c");
     }
-
 }
