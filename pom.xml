@@ -44,6 +44,8 @@
         <module>event-impl</module>
         <module>sound</module>
         <module>sound-impl</module>
+        <module>speech</module>
+        <module>speech-impl</module>
         <module>uml</module>
         <module>uml-impl</module>
         <module>io</module>
