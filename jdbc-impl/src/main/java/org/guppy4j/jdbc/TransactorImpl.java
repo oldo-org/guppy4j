@@ -15,6 +15,8 @@ public class TransactorImpl implements Transactor {
 
     private final ExceptionHandler<SQLException> exHandler;
 
+    // TODO : Get ideas from http://javalite.io/transactions
+
     public TransactorImpl(Connection connection,
                           ExceptionHandler<SQLException> exHandler) {
         this.connection = connection;
