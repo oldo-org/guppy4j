@@ -5,7 +5,7 @@
     <parent>
         <artifactId>libraries</artifactId>
         <groupId>org.guppy4j</groupId>
-        <version>0.0.6-SNAPSHOT</version>
+        <version>0.0.6</version>
     </parent>
 
     <artifactId>event-impl</artifactId>
