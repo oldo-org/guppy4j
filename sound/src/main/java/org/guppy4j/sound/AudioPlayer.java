@@ -1,15 +1,12 @@
 package org.guppy4j.sound;
 
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-import java.net.URL;
+import org.guppy4j.run.Stoppable;
 
 /**
  * Plays audio files (like wav, mp3, etc.)
  */
-public interface AudioPlayer {
+public interface AudioPlayer<T> extends Stoppable {
 
-    void play(URL url) throws IOException, UnsupportedAudioFileException;
+    void play(T source);
 
-    void stopAll();
 }

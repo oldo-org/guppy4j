@@ -10,4 +10,11 @@
 
     <artifactId>sound</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.guppy4j</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

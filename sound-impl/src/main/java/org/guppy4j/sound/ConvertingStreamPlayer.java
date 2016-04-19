@@ -1,17 +1,18 @@
 package org.guppy4j.sound;
 
+import org.guppy4j.collections.Consumables;
+import org.guppy4j.collections.ConsumablesImpl;
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.DataLine.Info;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.io.IOException;
-import java.util.Deque;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
@@ -21,11 +22,11 @@ import static org.guppy4j.log.Log.Level.debug;
  * Converts and plays audio stream (based on conversion
  * support found in the Java audio system)
  */
-public final class ConvertingStreamPlayer implements AudioStreamPlayer {
+public final class ConvertingStreamPlayer implements AudioPlayer<AudioInputStream> {
 
     private static final int DEFAULT_BUFFER_SIZE = 65536;
 
-    private final Deque<SourceDataLine> linesPlaying = new ConcurrentLinkedDeque<>();
+    private final Consumables<DataLine> linesPlaying = new ConsumablesImpl<>();
 
     private final Log log;
     private final int bufferSize;
@@ -40,8 +41,7 @@ public final class ConvertingStreamPlayer implements AudioStreamPlayer {
     }
 
     @Override
-    public void play(final AudioInputStream stream)
-        throws LineUnavailableException, IOException {
+    public void play(final AudioInputStream stream) {
 
         final AudioFormat outFormat = getOutFormat(stream.getFormat());
         final Info info = new Info(SourceDataLine.class, outFormat);
@@ -60,18 +60,16 @@ public final class ConvertingStreamPlayer implements AudioStreamPlayer {
                 line.stop();
                 linesPlaying.remove(line);
             }
+        } catch (LineUnavailableException | IOException e) {
+            throw new IllegalStateException(e);
         }
 
         log.as(debug, "Playing ended ...");
     }
 
     @Override
-    public void stopAll() {
-        while (linesPlaying.peek() != null) {
-            try (final SourceDataLine line = linesPlaying.pop()) {
-                line.stop();
-            }
-        }
+    public void stop() {
+        linesPlaying.applyToAll(DataLine::stop);
     }
 
     private static AudioFormat getOutFormat(AudioFormat inFormat) {
