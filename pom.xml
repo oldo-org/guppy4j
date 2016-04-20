@@ -49,6 +49,8 @@
         <module>uml-impl</module>
         <module>io</module>
         <module>io-impl</module>
+        <module>email</module>
+        <module>email-impl</module>
     </modules>
 
     <licenses>

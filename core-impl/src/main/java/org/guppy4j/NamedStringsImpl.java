@@ -1,8 +1,8 @@
 package org.guppy4j;
 
-import org.guppy4j.io.Resources;
-import org.guppy4j.log.Log;
-import org.guppy4j.log.LogProvider;
+import static java.util.Map.Entry;
+import static java.util.stream.Collectors.toList;
+import static org.guppy4j.log.Log.Level.info;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -10,12 +10,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.function.Predicate;
 
-import static java.util.Map.Entry;
-import static java.util.stream.Collectors.toList;
-import static org.guppy4j.log.Log.Level.info;
+import org.guppy4j.io.Resources;
+import org.guppy4j.log.Log;
+import org.guppy4j.log.LogProvider;
 
 /**
- * Settings based on a properties file
+ * Named Strings based on a properties file
  */
 public class NamedStringsImpl implements NamedStrings {
 
