@@ -1,10 +1,10 @@
 package org.guppy4j.jdbc;
 
-import org.guppy4j.exceptions.ActionToTry;
-import org.guppy4j.exceptions.ExceptionHandler;
-
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.guppy4j.exceptions.ActionToTry;
+import org.guppy4j.exceptions.ExceptionHandler;
 
 /**
  * JDBC transaction support

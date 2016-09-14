@@ -1,14 +1,14 @@
 package org.guppy4j.sound;
 
-import org.guppy4j.log.Log;
-import org.guppy4j.log.LogProvider;
-
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
+
+import org.guppy4j.log.Log;
+import org.guppy4j.log.LogProvider;
 
 import static javax.sound.sampled.AudioSystem.getAudioFileFormat;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;

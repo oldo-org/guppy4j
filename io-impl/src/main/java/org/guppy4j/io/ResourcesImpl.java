@@ -1,7 +1,5 @@
 package org.guppy4j.io;
 
-import static org.guppy4j.io.Charsets.UTF_8;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
@@ -9,6 +7,8 @@ import java.net.URL;
 import java.util.Properties;
 
 import org.guppy4j.exceptions.FunctionToTry;
+
+import static org.guppy4j.io.Charsets.UTF_8;
 
 /**
  * Default resource helper

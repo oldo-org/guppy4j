@@ -1,11 +1,11 @@
 package org.guppy4j.datatree;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import javax.xml.namespace.QName;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import static javax.xml.xpath.XPathConstants.NODE;
 import static javax.xml.xpath.XPathConstants.NODESET;

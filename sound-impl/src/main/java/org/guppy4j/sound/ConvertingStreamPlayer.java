@@ -1,8 +1,5 @@
 package org.guppy4j.sound;
 
-import org.guppy4j.log.Log;
-import org.guppy4j.log.LogProvider;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,6 +9,9 @@ import javax.sound.sampled.SourceDataLine;
 import java.io.IOException;
 import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;
+
+import org.guppy4j.log.Log;
+import org.guppy4j.log.LogProvider;
 
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;

@@ -1,9 +1,9 @@
 package org.guppy4j.uml;
 
-import org.junit.Test;
-
 import java.io.IOException;
 import java.nio.file.Paths;
+
+import org.junit.Test;
 
 /**
  * Tests DependencyPlantUmlGenerator

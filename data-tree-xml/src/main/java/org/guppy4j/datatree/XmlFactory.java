@@ -1,9 +1,9 @@
 package org.guppy4j.datatree;
 
-import org.guppy4j.io.CharDataConverter;
-
 import java.io.InputStream;
 import java.nio.file.Path;
+
+import org.guppy4j.io.CharDataConverter;
 
 /**
  * Creates Xml objects from various input sources

@@ -1,10 +1,10 @@
 package org.guppy4j.io;
 
-import static java.nio.file.Files.createDirectories;
-import static java.nio.file.Files.createFile;
-
 import java.io.IOException;
 import java.nio.file.Path;
+
+import static java.nio.file.Files.createDirectories;
+import static java.nio.file.Files.createFile;
 
 /**
  * Creation of file or directory, respectively
