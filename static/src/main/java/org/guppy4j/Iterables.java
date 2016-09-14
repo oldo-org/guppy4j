@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * Static helper methods for Iterable objects
+ * Static helper methods for iterable objects
  */
 public final class Iterables {
 
