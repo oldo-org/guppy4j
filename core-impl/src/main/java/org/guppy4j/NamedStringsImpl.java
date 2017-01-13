@@ -1,18 +1,16 @@
 package org.guppy4j;
 
-import static java.util.Map.Entry;
-import static java.util.stream.Collectors.toList;
-import static org.guppy4j.log.Log.Level.info;
+import org.guppy4j.log.Log;
+import org.guppy4j.log.LogProvider;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.Predicate;
 
-import org.guppy4j.io.Resources;
-import org.guppy4j.log.Log;
-import org.guppy4j.log.LogProvider;
+import static java.util.Map.Entry;
+import static java.util.stream.Collectors.toList;
+import static org.guppy4j.log.Log.Level.info;
 
 /**
  * Named Strings based on a properties file
@@ -22,17 +20,8 @@ public class NamedStringsImpl implements NamedStrings {
     private final Map<String, NamedString> map;
 
     public NamedStringsImpl(LogProvider logProvider,
-                            Resources resources,
-                            URL propertiesLocation) {
-        this(logProvider,
-                resources.properties(propertiesLocation),
-                propertiesLocation.toString());
-    }
-
-    public NamedStringsImpl(LogProvider logProvider,
                             Properties properties,
                             String propertiesOrigin) {
-
         map = toNamedValuesMap(properties);
 
         final Log log = logProvider.getLog(getClass());
