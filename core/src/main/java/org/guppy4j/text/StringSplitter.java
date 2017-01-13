@@ -1,4 +1,4 @@
-package org.guppy4j.util;
+package org.guppy4j.text;
 
 /**
  * Splits String values into parts

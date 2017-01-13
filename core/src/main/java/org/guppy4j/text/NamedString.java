@@ -1,4 +1,4 @@
-package org.guppy4j;
+package org.guppy4j.text;
 
 /**
  * An encapsulated name/value pair

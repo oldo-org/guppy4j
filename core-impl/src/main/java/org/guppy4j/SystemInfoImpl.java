@@ -1,6 +1,9 @@
 package org.guppy4j;
 
 import org.guppy4j.log.LogProvider;
+import org.guppy4j.text.NamedString;
+import org.guppy4j.text.NamedStrings;
+import org.guppy4j.text.NamedStringsImpl;
 
 import java.net.MalformedURLException;
 import java.net.URL;

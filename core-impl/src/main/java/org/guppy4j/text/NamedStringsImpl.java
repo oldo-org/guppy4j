@@ -1,4 +1,4 @@
-package org.guppy4j;
+package org.guppy4j.text;
 
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;

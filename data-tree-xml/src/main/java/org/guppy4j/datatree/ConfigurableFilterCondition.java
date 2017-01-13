@@ -1,7 +1,7 @@
 package org.guppy4j.datatree;
 
-import org.guppy4j.NamedString;
-import org.guppy4j.NamedStrings;
+import org.guppy4j.text.NamedString;
+import org.guppy4j.text.NamedStrings;
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
 

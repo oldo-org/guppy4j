@@ -3,6 +3,8 @@ package org.guppy4j;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import static org.guppy4j.Booleans.not;
+
 /**
  * Static helper methods for iterable objects
  */
@@ -13,10 +15,10 @@ public final class Iterables {
     }
 
     public static boolean exists(Iterable<?> iterable) {
-        return Booleans.not(isNullOrEmpty(iterable));
+        return not(isNullOrEmpty(iterable));
     }
 
     public static boolean isNullOrEmpty(Iterable<?> iterable) {
-        return iterable == null || Booleans.not(iterable.iterator().hasNext());
+        return iterable == null || not(iterable.iterator().hasNext());
     }
 }

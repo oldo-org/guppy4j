@@ -1,9 +1,6 @@
-package org.guppy4j;
+package org.guppy4j.text;
 
 import static java.lang.String.format;
-
-import org.guppy4j.util.StringSplitter;
-import org.guppy4j.util.StringSplitterImpl;
 
 /**
  * Named String implementation
