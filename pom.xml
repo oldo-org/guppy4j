@@ -16,7 +16,7 @@
     <developers>
         <developer>
             <name>Oliver Doepner</name>
-            <email>oliver@doepner.net</email>
+            <email>oliver@guppy4j.org</email>
             <organization>guppy4j.org</organization>
             <organizationUrl>http://guppy4j.org/</organizationUrl>
         </developer>
@@ -26,7 +26,6 @@
         <connection>scm:git:https://github.com/guppy4j/libraries.git</connection>
         <developerConnection>scm:git:https://github.com/guppy4j/libraries.git</developerConnection>
         <url>https://github.com/guppy4j/libraries.git</url>
-        <tag>libraries-0.0.5</tag>
     </scm>
 
     <modules>
@@ -204,22 +203,7 @@
                 <configuration>
                     <source>${required.java.version}</source>
                     <target>${required.java.version}</target>
-
-                    <!--work-around for javac bug in jdk8 version used by travis-ci-->
-                    <!--
-                                        <compilerId>eclipse</compilerId>
-                                        <optimize>true</optimize>
-                    -->
                 </configuration>
-                <!--
-                                <dependencies>
-                                    <dependency>
-                                        <groupId>org.codehaus.plexus</groupId>
-                                        <artifactId>plexus-compiler-eclipse</artifactId>
-                                        <version>2.5</version>
-                                    </dependency>
-                                </dependencies>
-                -->
             </plugin>
 
             <plugin>
