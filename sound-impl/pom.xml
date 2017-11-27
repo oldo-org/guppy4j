@@ -22,7 +22,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>collections-impl</artifactId>
-            <version>0.0.7-SNAPSHOT</version>
         </dependency>
 
         <!-- runtime dependencies -->

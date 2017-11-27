@@ -84,7 +84,6 @@
         <logback.version>1.1.2</logback.version>
         <junit.version>4.11</junit.version>
         <xmlunit.version>1.5</xmlunit.version>
-        <byte-buddy.version>1.7.9</byte-buddy.version>
 
     </properties>
 
@@ -159,6 +158,26 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>email</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>email-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>collections</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>collections-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>reflect</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -195,13 +214,6 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
                 <scope>runtime</scope>
-            </dependency>
-
-            <!-- module specific dependencies-->
-            <dependency>
-                <groupId>net.bytebuddy</groupId>
-                <artifactId>byte-buddy</artifactId>
-                <version>${byte-buddy.version}</version>
             </dependency>
 
         </dependencies>
