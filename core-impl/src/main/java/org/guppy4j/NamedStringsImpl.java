@@ -1,10 +1,8 @@
 package org.guppy4j;
 
-import org.guppy4j.io.Resources;
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -20,14 +18,6 @@ import static org.guppy4j.log.Log.Level.info;
 public class NamedStringsImpl implements NamedStrings {
 
     private final Map<String, NamedString> map;
-
-    public NamedStringsImpl(LogProvider logProvider,
-                            Resources resources,
-                            URL propertiesLocation) {
-        this(logProvider,
-                resources.properties(propertiesLocation),
-                propertiesLocation.toString());
-    }
 
     public NamedStringsImpl(LogProvider logProvider,
                             Properties properties,
