@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.guppy4j</groupId>
     <artifactId>libraries</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -16,7 +17,7 @@
     <developers>
         <developer>
             <name>Oliver Doepner</name>
-            <email>oliver@doepner.net</email>
+            <email>oliver@guppy4j.org</email>
             <organization>guppy4j.org</organization>
             <organizationUrl>http://guppy4j.org/</organizationUrl>
         </developer>
@@ -26,7 +27,6 @@
         <connection>scm:git:https://github.com/guppy4j/libraries.git</connection>
         <developerConnection>scm:git:https://github.com/guppy4j/libraries.git</developerConnection>
         <url>https://github.com/guppy4j/libraries.git</url>
-        <tag>libraries-0.0.5</tag>
     </scm>
 
     <modules>
@@ -49,6 +49,8 @@
         <module>uml-impl</module>
         <module>io</module>
         <module>io-impl</module>
+        <module>email</module>
+        <module>email-impl</module>
         <module>reflect</module>
         <module>reflect-impl</module>
     </modules>
@@ -74,6 +76,8 @@
         <nexus-staging-maven-plugin.version>1.6.3</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5</maven-release-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <unleash-maven-plugin.version>2.6.0</unleash-maven-plugin.version>
+        <unleash-scm-provider-git.version>2.1.0</unleash-scm-provider-git.version>
 
         <!-- 3rd party library versions -->
         <slf4j.version>1.7.7</slf4j.version>
@@ -111,16 +115,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jdbc-impl</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>messaging</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>messaging-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -230,22 +224,7 @@
                 <configuration>
                     <source>${required.java.version}</source>
                     <target>${required.java.version}</target>
-
-                    <!--work-around for javac bug in jdk8 version used by travis-ci-->
-                    <!--
-                                        <compilerId>eclipse</compilerId>
-                                        <optimize>true</optimize>
-                    -->
                 </configuration>
-                <!--
-                                <dependencies>
-                                    <dependency>
-                                        <groupId>org.codehaus.plexus</groupId>
-                                        <artifactId>plexus-compiler-eclipse</artifactId>
-                                        <version>2.5</version>
-                                    </dependency>
-                                </dependencies>
-                -->
             </plugin>
 
             <plugin>
@@ -296,6 +275,24 @@
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>${maven-gpg-plugin.version}</version>
             </plugin>
+
+            <plugin>
+                <groupId>com.itemis.maven.plugins</groupId>
+                <artifactId>unleash-maven-plugin</artifactId>
+                <version>${unleash-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.itemis.maven.plugins</groupId>
+                        <artifactId>unleash-scm-provider-git</artifactId>
+                        <version>${unleash-scm-provider-git.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <profiles>
+                        <profile>gpg-sign-artifacts</profile>
+                    </profiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -316,6 +313,13 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

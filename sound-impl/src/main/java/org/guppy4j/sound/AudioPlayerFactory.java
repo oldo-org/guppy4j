@@ -1,8 +1,8 @@
 package org.guppy4j.sound;
 
-import org.guppy4j.log.LogProvider;
-
 import java.util.function.Supplier;
+
+import org.guppy4j.log.LogProvider;
 
 /**
  * Convenient creation of AudioPlayer instances

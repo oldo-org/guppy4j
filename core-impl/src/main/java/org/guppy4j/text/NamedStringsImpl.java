@@ -1,4 +1,4 @@
-package org.guppy4j;
+package org.guppy4j.text;
 
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 import static org.guppy4j.log.Log.Level.info;
 
 /**
- * Settings based on a properties file
+ * Named Strings based on a properties file
  */
 public class NamedStringsImpl implements NamedStrings {
 
@@ -22,7 +22,6 @@ public class NamedStringsImpl implements NamedStrings {
     public NamedStringsImpl(LogProvider logProvider,
                             Properties properties,
                             String propertiesOrigin) {
-
         map = toNamedValuesMap(properties);
 
         final Log log = logProvider.getLog(getClass());

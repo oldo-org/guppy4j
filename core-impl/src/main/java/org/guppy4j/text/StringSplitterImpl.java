@@ -1,4 +1,4 @@
-package org.guppy4j.util;
+package org.guppy4j.text;
 
 import java.util.HashMap;
 import java.util.Map;

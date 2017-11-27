@@ -1,11 +1,11 @@
 package org.guppy4j.io;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+
 import static org.guppy4j.io.MediaTypeEnum.audio;
 import static org.guppy4j.io.MediaTypeEnum.image;
 import static org.guppy4j.io.MediaTypeEnum.text;
-
-import java.util.Collection;
-import java.util.LinkedHashSet;
 
 /**
  * File type enumeration

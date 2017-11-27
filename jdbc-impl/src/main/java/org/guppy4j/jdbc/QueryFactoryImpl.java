@@ -22,6 +22,6 @@ public class QueryFactoryImpl implements QueryFactory {
     public <T> QueryWithResult<T> queryWithResult(String sql,
                                                   ResultMapper<T> mapper,
                                                   ParamsSetter... paramsSetters) {
-        return new QueryWithResultImpl<T>(sql, mapper, paramsSetters);
+        return new QueryWithResultImpl<>(sql, mapper, paramsSetters);
     }
 }

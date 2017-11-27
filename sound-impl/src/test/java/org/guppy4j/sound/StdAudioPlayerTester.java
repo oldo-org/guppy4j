@@ -1,11 +1,11 @@
 package org.guppy4j.sound;
 
-import org.guppy4j.log.LogProvider;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
+
+import org.guppy4j.log.LogProvider;
 
 /**
  * For manual testing of audio file playback

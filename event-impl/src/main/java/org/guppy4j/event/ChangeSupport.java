@@ -1,11 +1,10 @@
 package org.guppy4j.event;
 
-
-import static org.guppy4j.BaseUtil.bothNullOrEqual;
-import static org.guppy4j.BaseUtil.not;
-
 import java.util.Collection;
 import java.util.LinkedList;
+
+import static org.guppy4j.Booleans.not;
+import static org.guppy4j.Objects.bothNullOrEqual;
 
 /**
  * Helper class for change event propagation

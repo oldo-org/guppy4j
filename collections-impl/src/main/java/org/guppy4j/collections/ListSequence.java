@@ -1,11 +1,11 @@
 package org.guppy4j.collections;
 
-import static java.util.Collections.unmodifiableList;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 /**
  * A simple item sequence that allows finding the next and previous item for any given item,

@@ -1,17 +1,17 @@
 package org.guppy4j.uml;
 
-import static java.lang.String.format;
-import static java.nio.file.Files.isDirectory;
-import static java.nio.file.Files.newDirectoryStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.text.ParseException;
 
 import net.sourceforge.plantumldependency.cli.main.program.PlantUMLDependencyProgram;
 import net.sourceforge.plantumldependency.commoncli.command.impl.CommandLineImpl;
 import net.sourceforge.plantumldependency.commoncli.exception.CommandLineException;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.text.ParseException;
+import static java.lang.String.format;
+import static java.nio.file.Files.isDirectory;
+import static java.nio.file.Files.newDirectoryStream;
 
 public class DependencyPlantUmlGenerator {
 

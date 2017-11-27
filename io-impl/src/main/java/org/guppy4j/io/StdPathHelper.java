@@ -1,8 +1,5 @@
 package org.guppy4j.io;
 
-import static java.nio.file.Files.copy;
-import static org.guppy4j.io.PathType.DIRECTORY;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileAlreadyExistsException;
@@ -10,6 +7,9 @@ import java.nio.file.Path;
 
 import org.guppy4j.log.Log;
 import org.guppy4j.log.LogProvider;
+
+import static java.nio.file.Files.copy;
+import static org.guppy4j.io.PathType.DIRECTORY;
 
 public final class StdPathHelper implements Paths {
 
