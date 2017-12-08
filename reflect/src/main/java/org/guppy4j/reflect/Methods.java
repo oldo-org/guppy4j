@@ -29,6 +29,6 @@ public interface Methods<T> {
 
     <P1, P2, R> Method<T> get(TriFunction<T, P1, P2, R> triFunction);
 
-    <P1, P2, P3, R> Method<T> get(QuadFunction<R, T, P1, P2, P3> quadFunction);
+    <P1, P2, P3, R> Method<T> get(QuadFunction<T, P1, P2, P3, R> quadFunction);
 
 }

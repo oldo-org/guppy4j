@@ -2,12 +2,12 @@ package org.guppy4j.reflect;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.implementation.InvocationHandlerAdapter;
-import net.bytebuddy.jar.asm.Opcodes;
 import org.guppy4j.function.QuadConsumer;
 import org.guppy4j.function.QuadFunction;
 import org.guppy4j.function.TriConsumer;
 import org.guppy4j.function.TriFunction;
 
+import java.lang.reflect.Modifier;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -26,7 +26,7 @@ public final class MethodsImpl<T> implements Methods<T> {
 
     public MethodsImpl(Class<T> type) {
         try {
-            if ((type.getModifiers() & Opcodes.ACC_FINAL) == Opcodes.ACC_FINAL) {
+            if ((type.getModifiers() & Modifier.FINAL) == Modifier.FINAL) {
                 // TODO
                 throw new IllegalArgumentException("Final classes are not supported yet");
             } else {
@@ -78,7 +78,7 @@ public final class MethodsImpl<T> implements Methods<T> {
     }
 
     @Override
-    public <P1, P2, P3, R> Method<T> get(QuadFunction<R, T, P1, P2, P3> quadFunction) {
+    public <P1, P2, P3, R> Method<T> get(QuadFunction<T, P1, P2, P3, R> quadFunction) {
         return getMethod(quadFunction::apply);
     }
 
@@ -132,4 +132,5 @@ public final class MethodsImpl<T> implements Methods<T> {
             int.class, boolean.class, double.class, long.class,
             char.class, byte.class, float.class, short.class
     };
+
 }

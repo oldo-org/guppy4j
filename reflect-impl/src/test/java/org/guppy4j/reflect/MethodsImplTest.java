@@ -41,7 +41,7 @@ public final class MethodsImplTest {
         assertEquals("m7", methods.get(m7).name());
     }
 
-    public static class C {
+    public static final class C {
         void x() {
         }
     }
