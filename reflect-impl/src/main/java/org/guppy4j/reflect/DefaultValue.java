@@ -6,29 +6,32 @@ package org.guppy4j.reflect;
 public final class DefaultValue {
 
     // These gets initialized to their default values
-    private static boolean DEFAULT_BOOLEAN;
-    private static byte DEFAULT_BYTE;
-    private static short DEFAULT_SHORT;
-    private static int DEFAULT_INT;
-    private static long DEFAULT_LONG;
-    private static float DEFAULT_FLOAT;
-    private static double DEFAULT_DOUBLE;
+    private static boolean defaultBoolean;
+    private static byte defaultByte;
+    private static char defaultChar;
+    private static short defaultShort;
+    private static int defaultInt;
+    private static long defaultLong;
+    private static float defaultFloat;
+    private static double defaultDouble;
 
     public static Object forType(Class<?> type) {
         if (type.equals(boolean.class)) {
-            return DEFAULT_BOOLEAN;
+            return defaultBoolean;
+        } else if (type.equals(char.class)) {
+            return defaultChar;
         } else if (type.equals(byte.class)) {
-            return DEFAULT_BYTE;
+            return defaultByte;
         } else if (type.equals(short.class)) {
-            return DEFAULT_SHORT;
+            return defaultShort;
         } else if (type.equals(int.class)) {
-            return DEFAULT_INT;
+            return defaultInt;
         } else if (type.equals(long.class)) {
-            return DEFAULT_LONG;
+            return defaultLong;
         } else if (type.equals(float.class)) {
-            return DEFAULT_FLOAT;
+            return defaultFloat;
         } else if (type.equals(double.class)) {
-            return DEFAULT_DOUBLE;
+            return defaultDouble;
         } else {
             // must be an Object type
             return null;
