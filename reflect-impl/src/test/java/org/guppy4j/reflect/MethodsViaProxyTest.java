@@ -1,15 +1,14 @@
 package org.guppy4j.reflect;
 
+import org.guppy4j.function.BiConsumer;
 import org.junit.Test;
-
-import java.util.function.BiConsumer;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Tests the Methods class
  */
-public final class MethodsImplTest {
+public final class MethodsViaProxyTest {
 
     public interface I {
         void m1();
@@ -23,7 +22,7 @@ public final class MethodsImplTest {
 
     @Test
     public void testInterface() {
-        final MethodsImpl<I> methods = new MethodsImpl<>(I.class);
+        final MethodsViaProxy<I> methods = new MethodsViaProxy<I>(I.class, new NativeProxyBuilder<>());
         assertEquals("m1", methods.get(I::m1).name());
         assertEquals("m2", methods.get(I::m2).name());
         assertEquals("m3", methods.get(I::m3).name());
@@ -63,7 +62,7 @@ public final class MethodsImplTest {
 
     @Test
     public void testClass() {
-        final MethodsImpl<C> methods = new MethodsImpl<>(C.class);
+        final MethodsViaProxy<C> methods = new MethodsViaProxy<>(C.class, new ByteBuddyProxyBuilder<>());
         assertEquals("m1", methods.get(C::m1).name());
         assertEquals("m2", methods.get(C::m2).name());
         assertEquals("m3", methods.get(C::m3).name());

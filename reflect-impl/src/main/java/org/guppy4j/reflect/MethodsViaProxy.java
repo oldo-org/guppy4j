@@ -1,44 +1,26 @@
 package org.guppy4j.reflect;
 
-import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.implementation.InvocationHandlerAdapter;
+import org.guppy4j.function.BiConsumer;
+import org.guppy4j.function.BiFunction;
+import org.guppy4j.function.Consumer;
+import org.guppy4j.function.Function;
 import org.guppy4j.function.QuadConsumer;
 import org.guppy4j.function.QuadFunction;
 import org.guppy4j.function.TriConsumer;
 import org.guppy4j.function.TriFunction;
 
-import java.lang.reflect.Modifier;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
-
-import static net.bytebuddy.matcher.ElementMatchers.any;
-
 /**
  * Converts given method references to Method object (type-safe reflection)
  */
-public final class MethodsImpl<T> implements Methods<T> {
+public final class MethodsViaProxy<T> implements Methods<T> {
+
+    private final MethodCapturer mc = new MethodCapturer();
 
     private final Class<T> type;
     private final T proxy;
-    private final MethodCapturer mc = new MethodCapturer();
 
-    public MethodsImpl(Class<T> type) {
-        try {
-            if ((type.getModifiers() & Modifier.FINAL) == Modifier.FINAL) {
-                // TODO
-                throw new IllegalArgumentException("Final classes are not supported yet");
-            } else {
-                proxy = new ByteBuddy()
-                        .subclass(type)
-                        .method(any()).intercept(InvocationHandlerAdapter.of(mc))
-                        .make().load(type.getClassLoader()).getLoaded()
-                        .newInstance();
-            }
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new IllegalArgumentException(e);
-        }
+    public MethodsViaProxy(Class<T> type, ProxyBuilder<T> proxyBuilder) {
+        proxy = proxyBuilder.buildProxy(type, mc);
         this.type = type;
     }
 

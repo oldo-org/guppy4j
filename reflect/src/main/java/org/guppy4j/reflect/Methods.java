@@ -1,14 +1,13 @@
 package org.guppy4j.reflect;
 
+import org.guppy4j.function.BiConsumer;
+import org.guppy4j.function.BiFunction;
+import org.guppy4j.function.Consumer;
+import org.guppy4j.function.Function;
 import org.guppy4j.function.QuadConsumer;
 import org.guppy4j.function.QuadFunction;
 import org.guppy4j.function.TriConsumer;
 import org.guppy4j.function.TriFunction;
-
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * Methods of a type T for given method reference
