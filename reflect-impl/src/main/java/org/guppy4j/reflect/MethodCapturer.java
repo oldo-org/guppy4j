@@ -12,7 +12,7 @@ public final class MethodCapturer implements InvocationHandler, Supplier<Method>
     private Method method;
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) {
         this.method = method;
         final Class<?> returnType = method.getReturnType();
         if (void.class == returnType) {
