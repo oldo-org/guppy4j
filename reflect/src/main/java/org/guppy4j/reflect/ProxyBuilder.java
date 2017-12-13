@@ -9,4 +9,5 @@ import java.lang.reflect.InvocationHandler;
 public interface ProxyBuilder<T> {
 
     T buildProxy(Class<T> targeType, InvocationHandler invocationHandler);
+
 }
