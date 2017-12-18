@@ -16,7 +16,9 @@ public final class DefaultValue {
     private static double defaultDouble;
 
     public static Object forType(Class<?> type) {
-        if (type.equals(boolean.class)) {
+        if (void.class == type) {
+            return null;
+        } else if (type.equals(boolean.class)) {
             return defaultBoolean;
         } else if (type.equals(char.class)) {
             return defaultChar;

@@ -15,11 +15,7 @@ public final class MethodCapturer implements InvocationHandler, Supplier<Method>
     public Object invoke(Object proxy, Method method, Object[] args) {
         this.method = method;
         final Class<?> returnType = method.getReturnType();
-        if (void.class == returnType) {
-            return null;
-        } else {
-            return DefaultValue.forType(returnType);
-        }
+        return DefaultValue.forType(returnType);
     }
 
     @Override
