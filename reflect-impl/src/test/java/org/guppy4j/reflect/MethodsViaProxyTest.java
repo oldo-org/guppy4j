@@ -16,7 +16,7 @@ public final class MethodsViaProxyTest {
         void m3(double p);
         int m4(int p, boolean b, String s);
         int m5(Integer p);
-        Object m6(Float p, char c);
+        Object m6(Float p, double c);
         void m7(Boolean b, boolean... booleans);
     }
 

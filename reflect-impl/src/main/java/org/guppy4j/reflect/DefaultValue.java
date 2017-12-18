@@ -1,5 +1,8 @@
 package org.guppy4j.reflect;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Default value for each of the known Java type
  */
@@ -15,28 +18,24 @@ public final class DefaultValue {
     private static float defaultFloat;
     private static double defaultDouble;
 
+    private static Map<Class<?>, Object> primitives = new HashMap<>();
+
+    static {
+		primitives.put(boolean.class, defaultBoolean);
+		primitives.put(char.class, defaultChar);
+		primitives.put(byte.class, defaultByte);
+		primitives.put(short.class, defaultShort);
+		primitives.put(int.class, defaultInt);
+		primitives.put(long.class, defaultLong);
+		primitives.put(float.class, defaultFloat);
+		primitives.put(double.class, defaultDouble);
+	}
+
     public static Object forType(Class<?> type) {
-        if (void.class == type) {
-            return null;
-        } else if (type.equals(boolean.class)) {
-            return defaultBoolean;
-        } else if (type.equals(char.class)) {
-            return defaultChar;
-        } else if (type.equals(byte.class)) {
-            return defaultByte;
-        } else if (type.equals(short.class)) {
-            return defaultShort;
-        } else if (type.equals(int.class)) {
-            return defaultInt;
-        } else if (type.equals(long.class)) {
-            return defaultLong;
-        } else if (type.equals(float.class)) {
-            return defaultFloat;
-        } else if (type.equals(double.class)) {
-            return defaultDouble;
-        } else {
-            // must be an Object type
-            return null;
-        }
+    	return primitives.get(type);
     }
+
+	public static Iterable<Object> forPrimitiveTypes() {
+		return primitives.values();
+	}
 }

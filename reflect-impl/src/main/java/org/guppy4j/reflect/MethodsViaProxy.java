@@ -99,9 +99,9 @@ public final class MethodsViaProxy<T> implements Methods<T> {
         try {
             consumer.accept(null);
         } catch (NullPointerException e) {
-            for (Class<?> p : primitiveTypes) {
+            for (Object v : DefaultValue.forPrimitiveTypes()) {
                 try {
-                    consumer.accept((P) DefaultValue.forType(p));
+                    consumer.accept((P) v);
                     return;
                 } catch (ClassCastException cce) {
                     // continue
