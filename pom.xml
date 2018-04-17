@@ -53,6 +53,8 @@
         <module>email-impl</module>
         <module>reflect</module>
         <module>reflect-impl</module>
+        <module>jmx</module>
+        <module>jmx-impl</module>
     </modules>
 
     <licenses>
@@ -184,6 +186,16 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>reflect-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jmx</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jmx-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
