@@ -1,19 +1,19 @@
-= guppy4j / libraries
+= oldo.org / guppy4j
 
 == Releases
 
-image:https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries/badge.svg[
-link="https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries"]
+image:https://maven-badges.herokuapp.com/maven-central/org.oldo/guppy4j/badge.svg[
+link="https://maven-badges.herokuapp.com/maven-central/org.oldo/guppy4j"]
 
-https://github.com/guppy4j/libraries/releases
+https://github.com/oldo-org/guppy4j/releases
 
 Incompatible changes may occur in all 0.x.y releases.
 If you need more stability, wait for the 1.0.0 release.
 
 == Build status
 
-image:https://travis-ci.org/guppy4j/libraries.svg?branch=master[
-link="https://travis-ci.org/guppy4j/libraries"]
+image:https://travis-ci.org/github/oldo-org/guppy4j.svg?branch=master[
+link="https://travis-ci.org/github/oldo-org/guppy4j"]
 
 == About the name
 

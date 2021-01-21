@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.guppy4j</groupId>
-    <artifactId>libraries</artifactId>
+    <groupId>org.oldo</groupId>
+    <artifactId>guppy4j</artifactId>
     <version>0.0.9-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -10,21 +10,21 @@
     <description>
         Some lightweight Java libraries
     </description>
-    <url>https://github.com/guppy4j/libraries</url>
+    <url>https://github.com/oldo-org/guppy4j</url>
 
     <developers>
         <developer>
-            <name>Oliver Doepner</name>
-            <email>oliver@guppy4j.org</email>
-            <organization>guppy4j.org</organization>
-            <organizationUrl>http://guppy4j.org/</organizationUrl>
+            <name>Ol Do</name>
+            <email>oldo@oldo.org</email>
+            <organization>oldo.org</organization>
+            <organizationUrl>http://oldo.org/</organizationUrl>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/guppy4j/libraries.git</connection>
-        <developerConnection>scm:git:https://github.com/guppy4j/libraries.git</developerConnection>
-        <url>https://github.com/guppy4j/libraries.git</url>
+        <connection>scm:git:https://github.com/oldo-org/guppy4j.git</connection>
+        <developerConnection>scm:git:https://github.com/oldo-org/guppy4j.git</developerConnection>
+        <url>https://github.com/oldo-org/guppy4j.git</url>
 <tag>HEAD</tag>
     </scm>
 

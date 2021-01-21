@@ -2,8 +2,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>libraries</artifactId>
-        <groupId>org.guppy4j</groupId>
+        <artifactId>guppy4j</artifactId>
+        <groupId>org.oldo</groupId>
         <version>0.0.9-SNAPSHOT</version>
     </parent>
 
@@ -45,7 +45,7 @@
 
         <!--
         <dependency>
-            <groupId>org.guppy4j</groupId>
+            <groupId>org.oldoroupId>
             <artifactId>jaad</artifactId>
             <version>0.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
