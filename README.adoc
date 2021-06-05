@@ -3,9 +3,7 @@
 == Releases
 
 image:https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries/badge.svg[
-link="https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries"]
-
-https://github.com/oldo-org/guppy4j/releases
+link="https://search.maven.org/search?q=org.guppy4j"]
 
 Incompatible changes may occur in all 0.x.y releases.
 If you need more stability, wait for the 1.0.0 release.
