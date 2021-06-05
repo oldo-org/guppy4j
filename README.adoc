@@ -2,8 +2,8 @@
 
 == Releases
 
-image:https://maven-badges.herokuapp.com/maven-central/org.oldo/guppy4j/badge.svg[
-link="https://maven-badges.herokuapp.com/maven-central/org.oldo/guppy4j"]
+image:https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries/badge.svg[
+link="https://maven-badges.herokuapp.com/maven-central/org.guppy4j/libraries"]
 
 https://github.com/oldo-org/guppy4j/releases
 
