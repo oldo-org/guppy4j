@@ -19,14 +19,14 @@ import static org.oldo.log.Log.Level.error;
  */
 public final class StdAudioPlayer implements AudioPlayer<URL> {
 
-    private final AudioPlayer<AudioInputStream> directPlayer;
-    private final AudioPlayer<AudioInputStream> convertingPlayer;
+    private final AudioPlayer<URL> directPlayer;
+    private final AudioPlayer<URL> convertingPlayer;
 
     private final Log log;
 
     public StdAudioPlayer(LogProvider logProvider,
-                          AudioPlayer<AudioInputStream> directPlayer,
-                          AudioPlayer<AudioInputStream> convertingPlayer) {
+                          AudioPlayer<URL> directPlayer,
+                          AudioPlayer<URL> convertingPlayer) {
         this.directPlayer = directPlayer;
         this.convertingPlayer = convertingPlayer;
         this.log = logProvider.getLog(getClass());
@@ -35,26 +35,15 @@ public final class StdAudioPlayer implements AudioPlayer<URL> {
     @Override
     public void play(final URL url) {
         try {
-            play(getPlayer(getAudioFileFormat(url)), url);
+            final AudioPlayer<URL> player = getPlayer(getAudioFileFormat(url));
+            player.play(url);
         } catch (UnsupportedAudioFileException | IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    private AudioPlayer<AudioInputStream> getPlayer(AudioFileFormat format) {
+    private AudioPlayer<URL> getPlayer(AudioFileFormat format) {
         return isFileTypeSupported(format.getType()) ? directPlayer : convertingPlayer;
-    }
-
-    private void play(AudioPlayer<AudioInputStream> player, URL url) {
-        try (AudioInputStream stream = getAudioInputStream(url)) {
-
-            player.play(stream);
-
-        } catch (UnsupportedAudioFileException e) {
-            throw new IllegalArgumentException(e);
-        } catch (IOException e) {
-            log.as(error, e);
-        }
     }
 
     @Override

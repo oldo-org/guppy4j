@@ -5,24 +5,23 @@ import org.oldo.collections.ConsumablesImpl;
 import org.oldo.log.Log;
 import org.oldo.log.LogProvider;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
+import javax.sound.sampled.*;
 import javax.sound.sampled.DataLine.Info;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static org.oldo.log.Log.Level.debug;
+import static org.oldo.log.Log.Level.error;
 
 /**
  * Converts and plays audio stream (based on conversion
  * support found in the Java audio system)
  */
-public final class ConvertingStreamPlayer implements AudioPlayer<AudioInputStream> {
+public final class ConvertingStreamPlayer implements AudioPlayer<URL> {
 
     private static final int DEFAULT_BUFFER_SIZE = 65536;
 
@@ -30,6 +29,8 @@ public final class ConvertingStreamPlayer implements AudioPlayer<AudioInputStrea
 
     private final Log log;
     private final int bufferSize;
+
+    private final ExecutorService executor = Executors.newCachedThreadPool();
 
     public ConvertingStreamPlayer(LogProvider logProvider) {
         this(logProvider, DEFAULT_BUFFER_SIZE);
@@ -41,30 +42,41 @@ public final class ConvertingStreamPlayer implements AudioPlayer<AudioInputStrea
     }
 
     @Override
-    public void play(final AudioInputStream stream) {
+    public void play(URL url) {
+        executor.execute(() -> playLoop(url));
+    }
 
-        final AudioFormat outFormat = getOutFormat(stream.getFormat());
-        final Info info = new Info(SourceDataLine.class, outFormat);
+    private void playLoop(URL url) {
+        try (AudioInputStream stream = getAudioInputStream(url)) {
 
-        log.as(debug, "Playing started ...");
+            final AudioFormat outFormat = getOutFormat(stream.getFormat());
+            final Info info = new Info(SourceDataLine.class, outFormat);
 
-        try (final SourceDataLine line =
-                 (SourceDataLine) AudioSystem.getLine(info)) {
+            log.as(debug, "Playing started ...");
 
-            if (line != null) {
-                line.open(outFormat);
-                linesPlaying.add(line);
-                line.start();
-                stream(getAudioInputStream(outFormat, stream), line);
-                line.drain();
-                line.stop();
-                linesPlaying.remove(line);
+            try (final SourceDataLine line =
+                         (SourceDataLine) AudioSystem.getLine(info)) {
+
+                if (line != null) {
+                    line.open(outFormat);
+                    linesPlaying.add(line);
+                    line.start();
+                    stream(getAudioInputStream(outFormat, stream), line);
+                    line.drain();
+                    line.stop();
+                    linesPlaying.remove(line);
+                }
+            } catch (LineUnavailableException | IOException e) {
+                throw new IllegalStateException(e);
             }
-        } catch (LineUnavailableException | IOException e) {
-            throw new IllegalStateException(e);
-        }
 
-        log.as(debug, "Playing ended ...");
+            log.as(debug, "Playing ended ...");
+
+        } catch (UnsupportedAudioFileException e) {
+            throw new IllegalArgumentException(e);
+        } catch (IOException e) {
+            log.as(error, e);
+        }
     }
 
     @Override

@@ -22,6 +22,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>collections-impl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>core-impl</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!-- runtime dependencies -->
         <dependency>
@@ -42,16 +47,14 @@
             <version>1.0.3-1</version>
             <scope>runtime</scope>
         </dependency>
-
         <!--
         <dependency>
-            <groupId>org.oldoroupId>
+            <groupId>de.sfuhrm</groupId>
             <artifactId>jaad</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.8.7</version>
             <scope>runtime</scope>
         </dependency>
         -->
-
     </dependencies>
 
 </project>
